@@ -190,3 +190,15 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 	 }
 
 	 add_action('init','product_post_types');
+
+	 function services_post_types(){
+		register_post_type('service', array(
+		  'public' => true,
+		  'labels' => array(
+			'name' => 'Services'
+		  ),
+		  'menu_icon' => 'dashicons-calendar'
+		));
+	  }
+ 
+	  add_action('init','services_post_types');
