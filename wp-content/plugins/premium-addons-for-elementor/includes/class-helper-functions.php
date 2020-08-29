@@ -5,6 +5,9 @@
  */
 namespace PremiumAddons;
 
+//Elementor Classes
+use Elementor\Core\Settings\Manager as SettingsManager;
+
 if( ! defined('ABSPATH') ) exit;
 
 /**
@@ -531,5 +534,23 @@ class Helper_Functions {
         }
 
         return $expire_time;
+    }
+
+    /**
+     * Get Elementor UI Theme
+     * 
+     * Detects user setting for UI theme
+     * 
+     * @since 3.21.1
+     * @access public
+     * 
+     * @return string $theme UI Theme
+     */
+    public static function get_elementor_ui_theme() {
+
+        $theme = SettingsManager::get_settings_managers( 'editorPreferences' )->get_model()->get_settings( 'ui_theme' );
+
+        return $theme;
+
     }
 }

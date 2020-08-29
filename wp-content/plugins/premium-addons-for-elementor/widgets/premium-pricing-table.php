@@ -411,7 +411,7 @@ class Premium_Pricing_Table extends Widget_Base {
                     'premium_pricing_list_item_text'    => __( 'List Item #3', 'premium-addons-for-elementor' ),
                 ],
                 ],
-                'fields'        => array_values( $repeater->get_controls() ),
+                'fields'        => $repeater->get_controls(),
                 'title_field'   => '{{{ elementor.helpers.renderIcon( this, premium_pricing_list_item_icon_updated, {}, "i", "panel" ) || \'<i class="{{ premium_pricing_list_item_icon }}" aria-hidden="true"></i>\' }}} {{{ premium_pricing_list_item_text }}}'
             ]
         );

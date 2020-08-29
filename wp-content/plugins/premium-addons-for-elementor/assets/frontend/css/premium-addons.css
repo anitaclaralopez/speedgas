@@ -579,53 +579,6 @@
       -ms-transform: scale(1);
           transform: scale(1); }
 
-.premium-banner-animation8 img {
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
-  -webkit-transform: scale(1.15);
-      -ms-transform: scale(1.15);
-          transform: scale(1.15); }
-
-.premium-banner-animation8:hover img,
-.premium-banner-animation8.active img {
-  -webkit-transform: scale(1);
-      -ms-transform: scale(1);
-          transform: scale(1); }
-
-.premium-banner-animation8 .premium-banner-ib-title {
-  margin-top: 20%;
-  -webkit-transition: -webkit-transform 0.35s;
-  transition: -webkit-transform 0.35s;
-  transition: transform 0.35s;
-  transition: transform 0.35s, -webkit-transform 0.35s;
-  -webkit-transform: translate3d(0, 20px, 0);
-          transform: translate3d(0, 20px, 0); }
-
-.premium-banner-animation8:hover .premium-banner-ib-title,
-.premium-banner-animation8.active .premium-banner-ib-title {
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0); }
-
-.premium-banner-animation8 .premium-banner-ib-content {
-  margin: 1em 0 0;
-  padding: 35px;
-  border: 1px solid #fff;
-  opacity: 0;
-  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, -webkit-transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s;
-  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
-  -webkit-transform: translate3d(0, 20px, 0) scale(1.1);
-          transform: translate3d(0, 20px, 0) scale(1.1); }
-
-.premium-banner-animation8:hover .premium-banner-ib-content,
-.premium-banner-animation8.active .premium-banner-ib-content {
-  opacity: 1;
-  -webkit-transform: translate3d(0, 0, 0) scale(1);
-          transform: translate3d(0, 0, 0) scale(1); }
-
 .premium-banner-animation12 .premium-banner-ib-desc::after {
   position: absolute;
   content: "";
@@ -700,25 +653,41 @@
 
 .premium-banner-animation13.zoomin:hover img,
 .premium-banner-animation1.zoomin:hover img,
-.premium-banner-animation4.zoomin:hover img {
+.premium-banner-animation4.zoomin:hover img,
+.premium-banner-animation8.zoomin:hover img,
+.premium-banner-animation7.zoomin:hover img,
+.premium-banner-animation9.zoomin:hover img,
+.premium-banner-animation10.zoomin:hover img {
   -webkit-transform: translate3d(0, 0, 0) scale(1.1);
           transform: translate3d(0, 0, 0) scale(1.1); }
 
 .premium-banner-animation13.zoomout:hover img,
 .premium-banner-animation1.zoomout:hover img,
-.premium-banner-animation4.zoomout:hover img {
+.premium-banner-animation4.zoomout:hover img,
+.premium-banner-animation8.zoomout:hover img,
+.premium-banner-animation7.zoomout:hover img,
+.premium-banner-animation9.zoomout:hover img,
+.premium-banner-animation10.zoomout:hover img {
   -webkit-transform: translate3d(0, 0, 0) scale(1);
           transform: translate3d(0, 0, 0) scale(1); }
 
 .premium-banner-animation13.scale:hover img,
 .premium-banner-animation1.scale:hover img,
-.premium-banner-animation4.scale:hover img {
+.premium-banner-animation4.scale:hover img,
+.premium-banner-animation8.scale:hover img,
+.premium-banner-animation7.scale:hover img,
+.premium-banner-animation9.scale:hover img,
+.premium-banner-animation10.scale:hover img {
   -webkit-transform: translate3d(0, 0, 0) scale(1.2) rotate(5deg);
           transform: translate3d(0, 0, 0) scale(1.2) rotate(5deg); }
 
 .premium-banner-animation13.grayscale:hover img,
 .premium-banner-animation1.grayscale:hover img,
-.premium-banner-animation4.grayscale:hover img {
+.premium-banner-animation4.grayscale:hover img,
+.premium-banner-animation8.grayscale:hover img,
+.premium-banner-animation7.grayscale:hover img,
+.premium-banner-animation9.grayscale:hover img,
+.premium-banner-animation10.grayscale:hover img {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   -webkit-filter: grayscale(100%);
@@ -726,7 +695,11 @@
 
 .premium-banner-animation13.blur:hover img,
 .premium-banner-animation1.blur:hover img,
-.premium-banner-animation4.blur:hover img {
+.premium-banner-animation4.blur:hover,
+.premium-banner-animation8.blur:hover img,
+.premium-banner-animation7.blur:hover img,
+.premium-banner-animation9.blur:hover img,
+.premium-banner-animation10.blur:hover img {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
   -webkit-filter: blur(3px);
@@ -791,6 +764,431 @@
   border: none;
   padding: 0;
   margin: 0; }
+
+.premium-banner-animation7 img {
+  width: -webkit-calc(100% + 40px) !important;
+  width: calc(100% + 40px) !important;
+  max-width: -webkit-calc(100% + 40px) !important;
+  max-width: calc(100% + 40px) !important; }
+
+.premium-banner-animation7 .premium-banner-brlr {
+  width: 7px; }
+
+.premium-banner-animation7 .premium-banner-brtb {
+  height: 7px; }
+
+.premium-banner-animation7 .premium-banner-br {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s; }
+
+.premium-banner-animation7 .premium-banner-bleft {
+  left: 30px;
+  top: -webkit-calc(100% - 150px);
+  top: calc(100% - 150px);
+  height: 0; }
+
+.premium-banner-animation7 .premium-banner-bright {
+  right: 30px;
+  bottom: -webkit-calc(100% - 150px);
+  bottom: calc(100% - 150px);
+  height: 0; }
+
+.premium-banner-animation7 .premium-banner-bottom {
+  right: -webkit-calc(100% - 150px);
+  right: calc(100% - 150px);
+  bottom: 30px;
+  width: 0; }
+
+.premium-banner-animation7 .premium-banner-btop {
+  left: -webkit-calc(100% - 150px);
+  left: calc(100% - 150px);
+  top: 30px;
+  width: 0; }
+
+.premium-banner-animation7 .premium-banner-ib-desc {
+  padding: 70px;
+  display: table; }
+  .premium-banner-animation7 .premium-banner-ib-desc .premium-banner-desc-centered {
+    display: table-cell;
+    vertical-align: middle; }
+
+.premium-banner-animation7 .premium-banner-ib-title {
+  margin-top: 0; }
+
+.premium-banner-animation7 .premium-banner-ib-title,
+.premium-banner-animation7 img {
+  -webkit-transform: translate3d(-30px, 0, 0);
+          transform: translate3d(-30px, 0, 0); }
+
+.premium-banner-animation7.zoomout img,
+.premium-banner-animation7.scale img {
+  -webkit-transform: translate3d(-30px, 0, 0) scale(1.1);
+          transform: translate3d(-30px, 0, 0) scale(1.1); }
+
+.premium-banner-animation7 .premium-banner-ib-content,
+.premium-banner-animation7 .premium-banner-read-more {
+  margin-top: 10px; }
+
+.premium-banner-animation7 .premium-banner-ib-desc::after, .premium-banner-animation7 .premium-banner-ib-desc::before {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation7 .premium-banner-ib-title,
+.premium-banner-animation7 .premium-banner-ib-content,
+.premium-banner-animation7 .premium-banner-read-more {
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation7 img {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation7:hover .premium-banner-ib-content,
+.premium-banner-animation7.active .premium-banner-ib-content,
+.premium-banner-animation7:hover .premium-banner-read-more,
+.premium-banner-animation7.active .premium-banner-read-more,
+.premium-banner-animation7:hover .premium-banner-ib-title,
+.premium-banner-animation7.active .premium-banner-ib-title {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.premium-banner-animation7:hover .premium-banner-bleft, .premium-banner-animation7.active .premium-banner-bleft {
+  top: 30px;
+  height: 70px; }
+
+.premium-banner-animation7:hover .premium-banner-bright, .premium-banner-animation7.active .premium-banner-bright {
+  bottom: 30px;
+  height: 70px; }
+
+.premium-banner-animation7:hover .premium-banner-bottom, .premium-banner-animation7.active .premium-banner-bottom {
+  right: 30px;
+  width: 70px; }
+
+.premium-banner-animation7:hover .premium-banner-btop, .premium-banner-animation7.active .premium-banner-btop {
+  left: 30px;
+  width: 70px; }
+
+.premium-banner-animation7:hover .premium-banner-ib-content,
+.premium-banner-animation7:hover .premium-banner-read-more,
+.premium-banner-animation7:hover .premium-banner-ib-title,
+.premium-banner-animation7:hover img {
+  -webkit-transition-delay: 0.15s;
+          transition-delay: 0.15s; }
+
+.premium-banner-animation8 img {
+  width: -webkit-calc(100% + 40px) !important;
+  width: calc(100% + 40px) !important;
+  max-width: -webkit-calc(100% + 40px) !important;
+  max-width: calc(100% + 40px) !important; }
+
+.premium-banner-animation8 .premium-banner-brlr {
+  width: 7px; }
+
+.premium-banner-animation8 .premium-banner-brtb {
+  height: 7px; }
+
+.premium-banner-animation8 .premium-banner-br {
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s; }
+
+.premium-banner-animation8 .premium-banner-bleft {
+  left: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+  height: 0; }
+
+.premium-banner-animation8 .premium-banner-bright {
+  right: 30px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+  height: 0; }
+
+.premium-banner-animation8 .premium-banner-bottom {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+  bottom: 30px;
+  width: 0; }
+
+.premium-banner-animation8 .premium-banner-btop {
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+      transform: translateX(-50%);
+  top: 30px;
+  width: 0; }
+
+.premium-banner-animation8 .premium-banner-ib-desc {
+  padding: 70px;
+  display: table; }
+  .premium-banner-animation8 .premium-banner-ib-desc .premium-banner-desc-centered {
+    display: table-cell;
+    vertical-align: middle; }
+
+.premium-banner-animation8 .premium-banner-ib-title {
+  margin-top: 0; }
+
+.premium-banner-animation8 .premium-banner-ib-title,
+.premium-banner-animation8 img {
+  -webkit-transform: translate3d(-30px, 0, 0);
+          transform: translate3d(-30px, 0, 0); }
+
+.premium-banner-animation8.zoomout img,
+.premium-banner-animation8.scale img {
+  -webkit-transform: translate3d(-30px, 0, 0) scale(1.1);
+          transform: translate3d(-30px, 0, 0) scale(1.1); }
+
+.premium-banner-animation8 .premium-banner-ib-content,
+.premium-banner-animation8 .premium-banner-read-more {
+  margin-top: 10px; }
+
+.premium-banner-animation8 .premium-banner-ib-desc::after, .premium-banner-animation8 .premium-banner-ib-desc::before {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation8 .premium-banner-ib-title,
+.premium-banner-animation8 .premium-banner-ib-content,
+.premium-banner-animation8 .premium-banner-read-more {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+  opacity: 0; }
+
+.premium-banner-animation8 img {
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation8:hover .premium-banner-ib-content,
+.premium-banner-animation8.active .premium-banner-ib-content,
+.premium-banner-animation8:hover .premium-banner-read-more,
+.premium-banner-animation8.active .premium-banner-read-more,
+.premium-banner-animation8:hover .premium-banner-ib-title,
+.premium-banner-animation8.active .premium-banner-ib-title {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.premium-banner-animation8:hover .premium-banner-bleft, .premium-banner-animation8.active .premium-banner-bleft {
+  height: -webkit-calc(100% - 60px);
+  height: calc(100% - 60px); }
+
+.premium-banner-animation8:hover .premium-banner-bright, .premium-banner-animation8.active .premium-banner-bright {
+  height: -webkit-calc(100% - 60px);
+  height: calc(100% - 60px); }
+
+.premium-banner-animation8:hover .premium-banner-bottom, .premium-banner-animation8.active .premium-banner-bottom {
+  width: -webkit-calc(100% - 60px);
+  width: calc(100% - 60px); }
+
+.premium-banner-animation8:hover .premium-banner-btop, .premium-banner-animation8.active .premium-banner-btop {
+  width: -webkit-calc(100% - 60px);
+  width: calc(100% - 60px); }
+
+.premium-banner-animation8:hover .premium-banner-ib-content,
+.premium-banner-animation8:hover .premium-banner-ib-title,
+.premium-banner-animation8:hover .premium-banner-read-more,
+.premium-banner-animation8:hover img {
+  -webkit-transition-delay: 0.15s;
+          transition-delay: 0.15s; }
+
+.premium-banner-animation9 img {
+  width: -webkit-calc(100% + 20px) !important;
+  width: calc(100% + 20px) !important;
+  max-width: -webkit-calc(100% + 20px) !important;
+  max-width: calc(100% + 20px) !important;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+          transform: scale(1.2); }
+
+.premium-banner-animation9 .premium-banner-ib-desc {
+  width: 100%;
+  height: 100%; }
+  .premium-banner-animation9 .premium-banner-ib-desc::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    background: #fff;
+    content: "";
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0); }
+  .premium-banner-animation9 .premium-banner-ib-desc::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 1px;
+    background: #fff;
+    content: "";
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+    -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0); }
+
+.premium-banner-animation9 .premium-banner-ib-title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  transition: transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transform: translate3d(0, -70px, 0);
+          transform: translate3d(0, -70px, 0);
+  margin-top: 0;
+  padding: 0 10%; }
+
+.premium-banner-animation9:hover .premium-banner-ib-title,
+.premium-banner-animation9.active .premium-banner-ib-title {
+  -webkit-transform: translate3d(0, -80px, 0);
+          transform: translate3d(0, -80px, 0); }
+
+.premium-banner-animation9 .premium-banner-ib-content,
+.premium-banner-animation9 .premium-banner-read-more {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  transition: transform 0.35s, -webkit-transform 0.35s;
+  padding: 0 10%;
+  -webkit-transform: translate3d(0, 35px, 0);
+          transform: translate3d(0, 35px, 0); }
+
+.premium-banner-animation9 .premium-banner-read-more {
+  top: 75%; }
+
+.premium-banner-animation9:hover .premium-banner-ib-content,
+.premium-banner-animation9.active .premium-banner-ib-content,
+.premium-banner-animation9:hover .premium-banner-read-more,
+.premium-banner-animation9.active .premium-banner-read-more {
+  -webkit-transform: translate3d(0, 45px, 0);
+          transform: translate3d(0, 45px, 0); }
+
+.premium-banner-animation9:hover .premium-banner-ib-desc::before,
+.premium-banner-animation9.active .premium-banner-ib-desc::before {
+  opacity: 0.5;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate(45deg);
+          transform: translate3d(-50%, -50%, 0) rotate(45deg); }
+
+.premium-banner-animation9:hover .premium-banner-ib-desc::after,
+.premium-banner-animation9.active .premium-banner-ib-desc::after {
+  opacity: 0.5;
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+          transform: translate3d(-50%, -50%, 0) rotate(-45deg); }
+
+.premium-banner-animation9:hover img {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1); }
+
+.premium-banner-animation10 img {
+  width: -webkit-calc(100% + 20px) !important;
+  width: calc(100% + 20px) !important;
+  max-width: -webkit-calc(100% + 20px) !important;
+  max-width: calc(100% + 20px) !important; }
+
+.premium-banner-animation10 .premium-banner-ib-title {
+  position: relative;
+  overflow: hidden;
+  padding: 5px 0 15px;
+  -webkit-transition: -webkit-transform 0.35s;
+  transition: -webkit-transform 0.35s;
+  transition: transform 0.35s;
+  transition: transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transform: translate3d(0, 20px, 0);
+          transform: translate3d(0, 20px, 0);
+  margin-bottom: 0; }
+  .premium-banner-animation10 .premium-banner-ib-title::after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #fff;
+    opacity: 0;
+    -webkit-transform: translate3d(0, 100%, 0);
+            transform: translate3d(0, 100%, 0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s; }
+
+.premium-banner-animation10:hover .premium-banner-ib-title,
+.premium-banner-animation10.active .premium-banner-ib-title {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.premium-banner-animation10:hover .premium-banner-ib-title::after,
+.premium-banner-animation10.active .premium-banner-ib-title::after {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
+
+.premium-banner-animation10 .premium-banner-ib-content,
+.premium-banner-animation10 .premium-banner-read-more {
+  padding-top: 15px;
+  opacity: 0;
+  -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, -webkit-transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s;
+  transition: opacity 0.35s, transform 0.35s, -webkit-transform 0.35s;
+  -webkit-transform: translate3d(0, 100%, 0);
+          transform: translate3d(0, 100%, 0); }
+
+.premium-banner-animation10 .premium-banner-read-more {
+  padding: 0; }
+
+.premium-banner-animation10:hover .premium-banner-ib-content,
+.premium-banner-animation10.active .premium-banner-ib-content,
+.premium-banner-animation10:hover .premium-banner-read-more,
+.premium-banner-animation10.active .premium-banner-read-more {
+  opacity: 1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0); }
 
 /**************** Premium CountDown *************/
 /************************************************/

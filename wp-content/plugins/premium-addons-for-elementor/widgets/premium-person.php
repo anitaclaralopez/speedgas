@@ -788,7 +788,7 @@ class Premium_Person extends Widget_Base {
                         'multiple_name' => 'John Frank'
                     ]
                 ],
-               'fields'         => array_values( $repeater->get_controls() ),
+               'fields'         => $repeater->get_controls(),
                'title_field'    => '{{{multiple_name}}} - {{{multiple_title}}}',
                'prevent_empty'  => false
            ]
@@ -853,14 +853,14 @@ class Premium_Person extends Widget_Base {
 
         $this->start_controls_section('section_pa_docs',
             [
-                'label'         => __('Helpful Documentations', 'premium-addons-pro'),
+                'label'         => __('Helpful Documentations', 'premium-addons-for-elementor'),
             ]
         );
         
         $this->add_control('doc_1',
             [
                 'type'            => Controls_Manager::RAW_HTML,
-                'raw'             => sprintf( __( '%1$s I\'m not able to see Font Awesome icons in the widget » %2$s', 'premium-addons-pro' ), '<a href="https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'raw'             => sprintf( __( '%1$s I\'m not able to see Font Awesome icons in the widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
                 'content_classes' => 'editor-pa-doc',
             ]
         );

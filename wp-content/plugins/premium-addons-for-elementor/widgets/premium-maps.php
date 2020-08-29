@@ -266,7 +266,7 @@ class Premium_Maps extends Widget_Base {
                     'pin_title'         => __('Premium Google Maps', 'premium-addons-for-elementor'),
                     'pin_desc'          => __('Add an optional description to your map pin', 'premium-addons-for-elementor'),
                 ],
-                'fields'       => array_values( $repeater->get_controls() ),
+                'fields'       => $repeater->get_controls(),
             ]
         );
         

@@ -341,7 +341,7 @@ class Premium_Lottie extends Widget_Base {
         $this->add_control('doc_1',
             [
                 'type'            => Controls_Manager::RAW_HTML,
-                'raw'             => sprintf( __( '%1$s Check the video tutorial » %2$s', 'premium-addons-pro' ), '<a href="https://www.youtube.com/watch?v=0QWzUpF57dw" target="_blank" rel="noopener">', '</a>' ),
+                'raw'             => sprintf( __( '%1$s Check the video tutorial » %2$s', 'premium-addons-for-elementor' ), '<a href="https://www.youtube.com/watch?v=0QWzUpF57dw" target="_blank" rel="noopener">', '</a>' ),
                 'content_classes' => 'editor-pa-doc',
             ]
         );

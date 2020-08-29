@@ -129,7 +129,7 @@ class Premium_Vscroll extends Widget_Base {
            [
                'label'          => __( 'Sections', 'premium-addons-for-elementor' ),
                'type'           => Controls_Manager::REPEATER,
-               'fields'         => array_values( $temp_repeater->get_controls() ),
+               'fields'         => $temp_repeater->get_controls(),
                'condition'      => [
                    'content_type'   => 'templates'
                ],
@@ -151,7 +151,7 @@ class Premium_Vscroll extends Widget_Base {
            [
                'label'          => __( 'Sections', 'premium-addons-for-elementor' ),
                'type'           => Controls_Manager::REPEATER,
-               'fields'         => array_values( $id_repeater->get_controls() ),
+               'fields'         => $id_repeater->get_controls(),
                'condition'      => [
                    'content_type'   => 'ids'
                ],
@@ -248,7 +248,7 @@ class Premium_Vscroll extends Widget_Base {
            [
                'label'          => __( 'Menu Items', 'premium-addons-for-elementor' ),
                'type'           => Controls_Manager::REPEATER,
-               'fields'         => array_values( $nav_repeater->get_controls() ),
+               'fields'         => $nav_repeater->get_controls(),
                'title_field'    => '{{{ nav_menu_item }}}',
                'condition'      => [
                    'nav_menu_switch'    => 'yes'

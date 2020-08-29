@@ -111,7 +111,7 @@ class Premium_Fancytext extends Widget_Base {
                         'premium_text_strings_text_field' => __( 'Awesome', 'premium-addons-for-elementor' ),
                         ],
                     ],
-                'fields'        => array_values( $repeater->get_controls() ),
+                'fields'        => $repeater->get_controls(),
                 'title_field'   => '{{{ premium_text_strings_text_field }}}',
             ]
         );

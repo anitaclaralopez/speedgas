@@ -37,7 +37,7 @@ class Addons_Integration {
         
         $this->templateInstance = Includes\premium_Template_Tags::getInstance();
         
-        add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'premium_font_setup' ) );
+        add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'enqueue_editor_styles' ) );
         
         add_action( 'elementor/widgets/widgets_registered', array( $this, 'widgets_area' ) );
         
@@ -59,14 +59,28 @@ class Addons_Integration {
     * @access public
     * @return void
     */
-    public function premium_font_setup() {
+    public function enqueue_editor_styles() {
+
+        $theme =  Helper_Functions::get_elementor_ui_theme();
         
         wp_enqueue_style(
-            'premium-addons-font',
+            'pa-editor',
             PREMIUM_ADDONS_URL . 'assets/editor/css/style.css',
             array(),
             PREMIUM_ADDONS_VERSION
         );
+
+        //Enqueue required style for Elementor dark UI Theme
+        if( 'dark' === $theme ) {
+
+            wp_enqueue_style(
+                'pa-editor-dark',
+                PREMIUM_ADDONS_URL . 'assets/editor/css/style-dark.css',
+                array(),
+                PREMIUM_ADDONS_VERSION
+            );
+
+        }
         
         $badge_text = Helper_Functions::get_badge();
         

@@ -5,7 +5,7 @@ Donate Link: https://premiumaddons.com/?utm_source=wp-repo&utm_medium=link&utm_c
 Requires at least: 5.0
 Tested Up To: 5.5
 Requires PHP: 5.4
-Stable Tag: 3.21.0
+Stable Tag: 3.21.1
 License: GPL v3.0
 License URI: https://opensource.org/licenses/GPL-3.0
 
@@ -29,7 +29,7 @@ Following Elementor's steps, we've implemented freehand design experience in man
 ### 50+ Elementor Widgets & Addons
 Besides adding new widgets on monthly bases, we don't mainly focus on the number, we focus on adding as much customization options to our widgets as possible more than anywhere else.
 
-#### Modular & Lightweight
+### Modular & Lightweight
 Premium Addons has been built the same way Elementor was built so it's fully modular. You can enable/disable specific elements to prevent overloading your website with code you will not actually use which helps your website have a blazing fast performance.
 
 ### WPML Ready
@@ -72,7 +72,6 @@ Each widget and addon has been tested on different screen sizes, mobile devices,
 * [**Ken Burns Section Addon**](https://premiumaddons.com/ken-burns-section-addon-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(PRO)*: Add multiple images to your Elementor section background and animate them with the popular Ken Burns effect. 
 
 ### Off-Grid Widgets
-
  * [**Modal Box Widget**](https://premiumaddons.com/modal-box-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(FREE)*: All purpose Elementor modal box widget with the ability to use Elementor Templates and many other options.
  * [**Alert Box Widget**](https://premiumaddons.com/alert-box-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(PRO)*: Show a popups, GDPR alerts and much more with this handy widget from Premium Addons. 
  * [**Magic Section Widget**](https://premiumaddons.com/magic-section-widget-for-elementor-page-builder/?utm_source=wp-repo&utm_medium=link&utm_campaign=readme) *(PRO)*: Another Elementor off-grid widget allows you to slide in a section from any direction with a trigger.
@@ -178,6 +177,12 @@ Premium Addons for Elementor is 100% Ads Free, Ads can only be detected from You
 14. Premium Progress Bar Widget for Elementor
 
 == Changelog ==
+
+= 3.21.1 =
+
+- Fixed: Compatibility issues with Elementor v3.0.0.
+- Fixed: Lottie Animate On Scroll option not working with fixed position.
+- Fixed: Carousel entrance animations flickeing issue when a delay is added.
 
 = 3.21.0 =
 

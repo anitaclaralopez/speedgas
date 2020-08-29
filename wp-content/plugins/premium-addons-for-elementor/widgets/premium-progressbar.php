@@ -350,7 +350,7 @@ class Premium_Progressbar extends Widget_Base {
                         'number' => 50
                     ]
                     ],
-                'fields'    => array_values( $repeater->get_controls() ),
+                'fields'    => $repeater->get_controls(),
                 'condition' => [
                     'premium_progressbar_select_label'  => 'more_labels',
                     'layout_type!'   => 'circle'

@@ -43,7 +43,9 @@
             }
         }());
 
-        function ProjectInterface() { return {}; }
+        function ProjectInterface() {
+            return {};
+        }
 
         BMMath.random = Math.random;
         BMMath.abs = function (val) {
@@ -146,30 +148,67 @@
             q = v * (1 - f * s);
             t = v * (1 - (1 - f) * s);
             switch (i % 6) {
-                case 0: r = v; g = t; b = p; break;
-                case 1: r = q; g = v; b = p; break;
-                case 2: r = p; g = v; b = t; break;
-                case 3: r = p; g = q; b = v; break;
-                case 4: r = t; g = p; b = v; break;
-                case 5: r = v; g = p; b = q; break;
+                case 0:
+                    r = v;
+                    g = t;
+                    b = p;
+                    break;
+                case 1:
+                    r = q;
+                    g = v;
+                    b = p;
+                    break;
+                case 2:
+                    r = p;
+                    g = v;
+                    b = t;
+                    break;
+                case 3:
+                    r = p;
+                    g = q;
+                    b = v;
+                    break;
+                case 4:
+                    r = t;
+                    g = p;
+                    b = v;
+                    break;
+                case 5:
+                    r = v;
+                    g = p;
+                    b = q;
+                    break;
             }
             return [r,
                 g,
-                b];
+                b
+            ];
         }
 
         function RGBtoHSV(r, g, b) {
-            var max = Math.max(r, g, b), min = Math.min(r, g, b),
+            var max = Math.max(r, g, b),
+                min = Math.min(r, g, b),
                 d = max - min,
                 h,
                 s = (max === 0 ? 0 : d / max),
                 v = max / 255;
 
             switch (max) {
-                case min: h = 0; break;
-                case r: h = (g - b) + d * (g < b ? 6 : 0); h /= 6 * d; break;
-                case g: h = (b - r) + d * 2; h /= 6 * d; break;
-                case b: h = (r - g) + d * 4; h /= 6 * d; break;
+                case min:
+                    h = 0;
+                    break;
+                case r:
+                    h = (g - b) + d * (g < b ? 6 : 0);
+                    h /= 6 * d;
+                    break;
+                case g:
+                    h = (b - r) + d * 2;
+                    h /= 6 * d;
+                    break;
+                case b:
+                    h = (r - g) + d * 4;
+                    h /= 6 * d;
+                    break;
             }
 
             return [
@@ -184,8 +223,7 @@
             hsv[1] += offset;
             if (hsv[1] > 1) {
                 hsv[1] = 1;
-            }
-            else if (hsv[1] <= 0) {
+            } else if (hsv[1] <= 0) {
                 hsv[1] = 0;
             }
             return HSVtoRGB(hsv[0], hsv[1], hsv[2]);
@@ -196,8 +234,7 @@
             hsv[2] += offset;
             if (hsv[2] > 1) {
                 hsv[2] = 1;
-            }
-            else if (hsv[2] < 0) {
+            } else if (hsv[2] < 0) {
                 hsv[2] = 0;
             }
             return HSVtoRGB(hsv[0], hsv[1], hsv[2]);
@@ -208,8 +245,7 @@
             hsv[0] += offset / 360;
             if (hsv[0] > 1) {
                 hsv[0] -= 1;
-            }
-            else if (hsv[0] < 0) {
+            } else if (hsv[0] < 0) {
                 hsv[0] += 1;
             }
             return HSVtoRGB(hsv[0], hsv[1], hsv[2]);
@@ -237,7 +273,8 @@
                 return '#' + colorMap[r] + colorMap[g] + colorMap[b];
             };
         }());
-        function BaseEvent() { }
+
+        function BaseEvent() {}
         BaseEvent.prototype = {
             triggerEvent: function (eventName, args) {
                 if (this._cbs[eventName]) {
@@ -261,7 +298,8 @@
                 if (!callback) {
                     this._cbs[eventName] = null;
                 } else if (this._cbs[eventName]) {
-                    var i = 0, len = this._cbs[eventName].length;
+                    var i = 0,
+                        len = this._cbs[eventName].length;
                     while (i < len) {
                         if (this._cbs[eventName][i] === callback) {
                             this._cbs[eventName].splice(i, 1);
@@ -278,7 +316,9 @@
         };
         var createTypedArray = (function () {
             function createRegularArray(type, len) {
-                var i = 0, arr = [], value;
+                var i = 0,
+                    arr = [],
+                    value;
                 switch (type) {
                     case 'int16':
                     case 'uint8c':
@@ -293,6 +333,7 @@
                 }
                 return arr;
             }
+
             function createTypedArray(type, len) {
                 if (type === 'float32') {
                     return new Float32Array(len);
@@ -310,17 +351,22 @@
         }());
 
         function createSizedArray(len) {
-            return Array.apply(null, { length: len });
+            return Array.apply(null, {
+                length: len
+            });
         }
+
         function createNS(type) {
             //return {appendChild:function(){},setAttribute:function(){},style:{}}
             return document.createElementNS(svgNS, type);
         }
+
         function createTag(type) {
             //return {appendChild:function(){},setAttribute:function(){},style:{}}
             return document.createElement(type);
         }
-        function DynamicPropertyContainer() { };
+
+        function DynamicPropertyContainer() {};
         DynamicPropertyContainer.prototype = {
             addDynamicProperty: function (prop) {
                 if (this.dynamicProperties.indexOf(prop) === -1) {
@@ -625,12 +671,15 @@
                  y: x * me.b + y * me.d + me.f
                  };*/
             }
+
             function applyToX(x, y, z) {
                 return x * this.props[0] + y * this.props[4] + z * this.props[8] + this.props[12];
             }
+
             function applyToY(x, y, z) {
                 return x * this.props[1] + y * this.props[5] + z * this.props[9] + this.props[13];
             }
+
             function applyToZ(x, y, z) {
                 return x * this.props[2] + y * this.props[6] + z * this.props[10] + this.props[14];
             }
@@ -638,11 +687,11 @@
             function getInverseMatrix() {
                 var determinant = this.props[0] * this.props[5] - this.props[1] * this.props[4];
                 var a = this.props[5] / determinant;
-                var b = - this.props[1] / determinant;
-                var c = - this.props[4] / determinant;
+                var b = -this.props[1] / determinant;
+                var c = -this.props[4] / determinant;
                 var d = this.props[0] / determinant;
                 var e = (this.props[4] * this.props[13] - this.props[5] * this.props[12]) / determinant;
-                var f = - (this.props[0] * this.props[13] - this.props[1] * this.props[12]) / determinant;
+                var f = -(this.props[0] * this.props[13] - this.props[1] * this.props[12]) / determinant;
                 var inverseMatrix = new Matrix();
                 inverseMatrix.props[0] = a;
                 inverseMatrix.props[1] = b;
@@ -659,7 +708,8 @@
             }
 
             function inversePoints(pts) {
-                var i, len = pts.length, retPts = [];
+                var i, len = pts.length,
+                    retPts = [];
                 for (i = 0; i < len; i += 1) {
                     retPts[i] = inversePoint(pts[i]);
                 }
@@ -676,7 +726,12 @@
                     arr[4] = pt3[0];
                     arr[5] = pt3[1];
                 } else {
-                    var p0 = this.props[0], p1 = this.props[1], p4 = this.props[4], p5 = this.props[5], p12 = this.props[12], p13 = this.props[13];
+                    var p0 = this.props[0],
+                        p1 = this.props[1],
+                        p4 = this.props[4],
+                        p5 = this.props[5],
+                        p12 = this.props[12],
+                        p13 = this.props[13];
                     arr[0] = pt1[0] * p0 + pt1[1] * p4 + p12;
                     arr[1] = pt1[0] * p1 + pt1[1] * p5 + p13;
                     arr[2] = pt2[0] * p0 + pt2[1] * p4 + p12;
@@ -812,15 +867,15 @@
             // The following constants are related to IEEE 754 limits.
             //
             var global = this,
-                width = 256,        // each RC4 output is 0 <= x < 256
-                chunks = 6,         // at least six RC4 outputs for each double
-                digits = 52,        // there are 52 significant digits in a double
+                width = 256, // each RC4 output is 0 <= x < 256
+                chunks = 6, // at least six RC4 outputs for each double
+                digits = 52, // there are 52 significant digits in a double
                 rngname = 'random', // rngname: name for Math.random and Math.seedrandom
                 startdenom = math.pow(width, chunks),
                 significance = math.pow(2, digits),
                 overflow = significance * 2,
                 mask = width - 1,
-                nodecrypto;         // node.js crypto module, initialized at the bottom.
+                nodecrypto; // node.js crypto module, initialized at the bottom.
 
             //
             // seedrandom()
@@ -828,12 +883,14 @@
             //
             function seedrandom(seed, options, callback) {
                 var key = [];
-                options = (options === true) ? { entropy: true } : (options || {});
+                options = (options === true) ? {
+                    entropy: true
+                } : (options || {});
 
                 // Flatten the seed string or build one from local entropy if needed.
                 var shortseed = mixkey(flatten(
                     options.entropy ? [seed, tostring(pool)] :
-                        (seed === null) ? autoseed() : seed, 3), key);
+                    (seed === null) ? autoseed() : seed, 3), key);
 
                 // Use the seed to initialize an ARC4 generator.
                 var arc4 = new ARC4(key);
@@ -841,24 +898,28 @@
                 // This function returns a random double in [0, 1) that contains
                 // randomness in every bit of the mantissa of the IEEE 754 value.
                 var prng = function () {
-                    var n = arc4.g(chunks),             // Start with a numerator n < 2 ^ 48
-                        d = startdenom,                 //   and denominator d = 2 ^ 48.
-                        x = 0;                          //   and no 'extra last byte'.
-                    while (n < significance) {          // Fill up all significant digits by
-                        n = (n + x) * width;              //   shifting numerator and
-                        d *= width;                       //   denominator and generating a
-                        x = arc4.g(1);                    //   new least-significant-byte.
+                    var n = arc4.g(chunks), // Start with a numerator n < 2 ^ 48
+                        d = startdenom, //   and denominator d = 2 ^ 48.
+                        x = 0; //   and no 'extra last byte'.
+                    while (n < significance) { // Fill up all significant digits by
+                        n = (n + x) * width; //   shifting numerator and
+                        d *= width; //   denominator and generating a
+                        x = arc4.g(1); //   new least-significant-byte.
                     }
-                    while (n >= overflow) {             // To avoid rounding up, before adding
-                        n /= 2;                           //   last byte, shift everything
-                        d /= 2;                           //   right using integer math until
-                        x >>>= 1;                         //   we have exactly the desired bits.
+                    while (n >= overflow) { // To avoid rounding up, before adding
+                        n /= 2; //   last byte, shift everything
+                        d /= 2; //   right using integer math until
+                        x >>>= 1; //   we have exactly the desired bits.
                     }
-                    return (n + x) / d;                 // Form the number within [0, 1).
+                    return (n + x) / d; // Form the number within [0, 1).
                 };
 
-                prng.int32 = function () { return arc4.g(4) | 0; };
-                prng.quick = function () { return arc4.g(4) / 0x100000000; };
+                prng.int32 = function () {
+                    return arc4.g(4) | 0;
+                };
+                prng.quick = function () {
+                    return arc4.g(4) / 0x100000000;
+                };
                 prng.double = prng;
 
                 // Mix the randomness into accumulated entropy.
@@ -869,23 +930,30 @@
                     function (prng, seed, is_math_call, state) {
                         if (state) {
                             // Load the arc4 state from the given state if it has an S array.
-                            if (state.S) { copy(state, arc4); }
+                            if (state.S) {
+                                copy(state, arc4);
+                            }
                             // Only provide the .state method if requested via options.state.
-                            prng.state = function () { return copy(arc4, {}); };
+                            prng.state = function () {
+                                return copy(arc4, {});
+                            };
                         }
 
                         // If called as a method of Math (Math.seedrandom()), mutate
                         // Math.random because that is how seedrandom.js has worked since v1.0.
-                        if (is_math_call) { math[rngname] = prng; return seed; }
+                        if (is_math_call) {
+                            math[rngname] = prng;
+                            return seed;
+                        }
 
                         // Otherwise, it is a newer calling convention, so return the
                         // prng directly.
                         else return prng;
                     })(
-                        prng,
-                        shortseed,
-                        'global' in options ? options.global : (this == math),
-                        options.state);
+                    prng,
+                    shortseed,
+                    'global' in options ? options.global : (this == math),
+                    options.state);
             }
             math['seed' + rngname] = seedrandom;
 
@@ -901,10 +969,15 @@
             //
             function ARC4(key) {
                 var t, keylen = key.length,
-                    me = this, i = 0, j = me.i = me.j = 0, s = me.S = [];
+                    me = this,
+                    i = 0,
+                    j = me.i = me.j = 0,
+                    s = me.S = [];
 
                 // The empty key [] is treated as [0].
-                if (!keylen) { key = [keylen++]; }
+                if (!keylen) {
+                    key = [keylen++];
+                }
 
                 // Set up S using the standard key scheduling algorithm.
                 while (i < width) {
@@ -919,12 +992,15 @@
                 me.g = function (count) {
                     // Using instance members instead of closure state nearly doubles speed.
                     var t, r = 0,
-                        i = me.i, j = me.j, s = me.S;
+                        i = me.i,
+                        j = me.j,
+                        s = me.S;
                     while (count--) {
                         t = s[i = mask & (i + 1)];
                         r = r * width + s[mask & ((s[i] = s[j = mask & (j + t)]) + (s[j] = t))];
                     }
-                    me.i = i; me.j = j;
+                    me.i = i;
+                    me.j = j;
                     return r;
                     // For robust unpredictability, the function call below automatically
                     // discards an initial batch of values.  This is called RC4-drop[256].
@@ -948,10 +1024,14 @@
             // Converts an object tree to nested arrays of strings.
             //
             function flatten(obj, depth) {
-                var result = [], typ = (typeof obj), prop;
+                var result = [],
+                    typ = (typeof obj),
+                    prop;
                 if (depth && typ == 'object') {
                     for (prop in obj) {
-                        try { result.push(flatten(obj[prop], depth - 1)); } catch (e) { }
+                        try {
+                            result.push(flatten(obj[prop], depth - 1));
+                        } catch (e) {}
                     }
                 }
                 return (result.length ? result : typ == 'string' ? obj : obj + '\0');
@@ -963,7 +1043,8 @@
             // returns a shortened string seed that is equivalent to the result key.
             //
             function mixkey(seed, key) {
-                var stringseed = seed + '', smear, j = 0;
+                var stringseed = seed + '',
+                    smear, j = 0;
                 while (j < stringseed.length) {
                     key[mask & j] =
                         mask & ((smear ^= key[mask & j] * 19) + stringseed.charCodeAt(j++));
@@ -978,7 +1059,9 @@
             //
             function autoseed() {
                 try {
-                    if (nodecrypto) { return tostring(nodecrypto.randomBytes(width)); }
+                    if (nodecrypto) {
+                        return tostring(nodecrypto.randomBytes(width));
+                    }
                     var out = new Uint8Array(width);
                     (global.crypto || global.msCrypto).getRandomValues(out);
                     return tostring(out);
@@ -1013,8 +1096,8 @@
 
             // End anonymous scope, and pass initial values.
         })(
-            [],     // pool: entropy pool starts empty
-            BMMath    // math: package containing random, pow, and seedrandom
+            [], // pool: entropy pool starts empty
+            BMMath // math: package containing random, pow, and seedrandom
         );
         var BezierFactory = (function () {
             /**
@@ -1053,9 +1136,17 @@
 
             var float32ArraySupported = typeof Float32Array === "function";
 
-            function A(aA1, aA2) { return 1.0 - 3.0 * aA2 + 3.0 * aA1; }
-            function B(aA1, aA2) { return 3.0 * aA2 - 6.0 * aA1; }
-            function C(aA1) { return 3.0 * aA1; }
+            function A(aA1, aA2) {
+                return 1.0 - 3.0 * aA2 + 3.0 * aA1;
+            }
+
+            function B(aA1, aA2) {
+                return 3.0 * aA2 - 6.0 * aA1;
+            }
+
+            function C(aA1) {
+                return 3.0 * aA1;
+            }
 
             // Returns x(t) given t, x1, and x2, or y(t) given t, y1, and y2.
             function calcBezier(aT, aA1, aA2) {
@@ -1184,8 +1275,8 @@
                     var currTime = new Date().getTime();
                     var timeToCall = Math.max(0, 16 - (currTime - lastTime));
                     var id = setTimeout(function () {
-                        callback(currTime + timeToCall);
-                    },
+                            callback(currTime + timeToCall);
+                        },
                         timeToCall);
                     lastTime = currTime + timeToCall;
                     return id;
@@ -1197,7 +1288,8 @@
         }());
 
         function extendPrototype(sources, destination) {
-            var i, len = sources.length, sourcePrototype;
+            var i, len = sources.length,
+                sourcePrototype;
             for (i = 0; i < len; i += 1) {
                 sourcePrototype = sources[i].prototype;
                 for (var attr in sourcePrototype) {
@@ -1211,10 +1303,11 @@
         }
 
         function createProxyFunction(prototype) {
-            function ProxyFunction() { }
+            function ProxyFunction() {}
             ProxyFunction.prototype = prototype;
             return ProxyFunction;
         }
+
         function bezFunction() {
 
             var easingFunctions = [];
@@ -1255,7 +1348,8 @@
                     var i, len;
                     var ptCoord, perc, addedLength = 0;
                     var ptDistance;
-                    var point = [], lastPoint = [];
+                    var point = [],
+                        lastPoint = [];
                     var lengthData = bezier_length_pool.newElement();
                     len = pt3.length;
                     for (k = 0; k < curveSegments; k += 1) {
@@ -1447,6 +1541,7 @@
         }
 
         var bez = bezFunction();
+
         function dataFunctionManager() {
 
             //var tCanvasHelper = createTag('canvas').getContext('2d');
@@ -1498,7 +1593,8 @@
             }
 
             function findCompLayers(id, comps) {
-                var i = 0, len = comps.length;
+                var i = 0,
+                    len = comps.length;
                 while (i < len) {
                     if (comps[i].id === id) {
                         if (!comps[i].layers.__used) {
@@ -1584,12 +1680,10 @@
                 function updateTextLayer(textLayer) {
                     var documentData = textLayer.t.d;
                     textLayer.t.d = {
-                        k: [
-                            {
-                                s: documentData,
-                                t: 0
-                            }
-                        ]
+                        k: [{
+                            s: documentData,
+                            t: 0
+                        }]
                     };
                 }
 
@@ -1622,7 +1716,8 @@
                 var minimumVersion = [4, 7, 99];
                 return function (animationData) {
                     if (animationData.chars && !checkVersion(minimumVersion, animationData.v)) {
-                        var i, len = animationData.chars.length, j, jLen, k, kLen;
+                        var i, len = animationData.chars.length,
+                            j, jLen, k, kLen;
                         var pathData, paths;
                         for (i = 0; i < len; i += 1) {
                             if (animationData.chars[i].data && animationData.chars[i].data.shapes) {
@@ -1822,9 +1917,7 @@
             };
             var combinedCharacters = [];
             //Hindi characters
-            combinedCharacters = combinedCharacters.concat([2304, 2305, 2306, 2307, 2362, 2363, 2364, 2364, 2366
-                , 2367, 2368, 2369, 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2377, 2378, 2379
-                , 2380, 2381, 2382, 2383, 2387, 2388, 2389, 2390, 2391, 2402, 2403]);
+            combinedCharacters = combinedCharacters.concat([2304, 2305, 2306, 2307, 2362, 2363, 2364, 2364, 2366, 2367, 2368, 2369, 2370, 2371, 2372, 2373, 2374, 2375, 2376, 2377, 2378, 2379, 2380, 2381, 2382, 2383, 2387, 2388, 2389, 2390, 2391, 2402, 2403]);
 
             function setUpNode(font, family) {
                 var parentNode = createTag('span');
@@ -1849,7 +1942,11 @@
                 // Remember width with no applied web font
                 var width = node.offsetWidth;
                 node.style.fontFamily = font + ', ' + family;
-                return { node: node, w: width, parent: parentNode };
+                return {
+                    node: node,
+                    w: width,
+                    parent: parentNode
+                };
             }
 
             function checkLoadedFonts() {
@@ -1887,7 +1984,9 @@
                 if (loadedCount !== 0 && Date.now() - this.initTime < maxWaitingTime) {
                     setTimeout(this.checkLoadedFonts.bind(this), 20);
                 } else {
-                    setTimeout(function () { this.isLoaded = true; }.bind(this), 0);
+                    setTimeout(function () {
+                        this.isLoaded = true;
+                    }.bind(this), 0);
 
                 }
             }
@@ -2013,7 +2112,8 @@
                     this.chars = [];
                 }
                 var i, len = chars.length;
-                var j, jLen = this.chars.length, found;
+                var j, jLen = this.chars.length,
+                    found;
                 for (i = 0; i < len; i += 1) {
                     j = 0;
                     found = false;
@@ -2031,7 +2131,8 @@
             }
 
             function getCharData(char, style, font) {
-                var i = 0, len = this.chars.length;
+                var i = 0,
+                    len = this.chars.length;
                 while (i < len) {
                     if (this.chars[i].ch === char && this.chars[i].style === style && this.chars[i].fFamily === font) {
 
@@ -2069,7 +2170,8 @@
             }
 
             function getFontByName(name) {
-                var i = 0, len = this.fonts.length;
+                var i = 0,
+                    len = this.fonts.length;
                 while (i < len) {
                     if (this.fonts[i].fName === name) {
                         return this.fonts[i];
@@ -2121,7 +2223,8 @@
                 }
                 var iterationIndex = caching.lastIndex;
                 var i = iterationIndex;
-                var len = this.keyframes.length - 1, flag = true;
+                var len = this.keyframes.length - 1,
+                    flag = true;
                 var keyData, nextKeyData;
 
                 while (flag) {
@@ -2279,8 +2382,14 @@
             //based on @Toji's https://github.com/toji/gl-matrix/
             function slerp(a, b, t) {
                 var out = [];
-                var ax = a[0], ay = a[1], az = a[2], aw = a[3],
-                    bx = b[0], by = b[1], bz = b[2], bw = b[3]
+                var ax = a[0],
+                    ay = a[1],
+                    az = a[2],
+                    aw = a[3],
+                    bx = b[0],
+                    by = b[1],
+                    bz = b[2],
+                    bw = b[3]
 
                 var omega, cosom, sinom, scale0, scale1;
 
@@ -2366,7 +2475,8 @@
                         this._mdf = true;
                     }
                 } else {
-                    var i = 0, len = this.v.length;
+                    var i = 0,
+                        len = this.v.length;
                     while (i < len) {
                         multipliedValue = val[i] * this.mult;
                         if (math_abs(this.v[i] - multipliedValue) > 0.00001) {
@@ -2457,7 +2567,12 @@
                 this.keyframes = data.k;
                 this.offsetTime = elem.data.st;
                 this.frameId = -1;
-                this._caching = { lastFrame: initFrame, lastIndex: 0, value: 0, _lastKeyframeIndex: -1 };
+                this._caching = {
+                    lastFrame: initFrame,
+                    lastIndex: 0,
+                    value: 0,
+                    _lastKeyframeIndex: -1
+                };
                 this.k = true;
                 this.kf = true;
                 this.data = data;
@@ -2518,7 +2633,11 @@
                     this.v[i] = initFrame;
                     this.pv[i] = initFrame;
                 }
-                this._caching = { lastFrame: initFrame, lastIndex: 0, value: createTypedArray('float32', arrLen) };
+                this._caching = {
+                    lastFrame: initFrame,
+                    lastIndex: 0,
+                    value: createTypedArray('float32', arrLen)
+                };
                 this.addEffect = addEffect;
             }
 
@@ -2581,6 +2700,7 @@
                     mat.translate(this.p.v[0], this.p.v[1], -this.p.v[2]);
                 }
             }
+
             function processKeys(forceRender) {
                 if (this.elem.globalData.frameId === this.frameId) {
                     return;
@@ -2624,7 +2744,9 @@
                         } else if (this.px && this.px.keyframes && this.py.keyframes && this.px.getValueAtTime && this.py.getValueAtTime) {
                             v1 = [];
                             v2 = [];
-                            var px = this.px, py = this.py, frameRate;
+                            var px = this.px,
+                                py = this.py,
+                                frameRate;
                             if (px._caching.lastFrame + px.offsetTime <= px.keyframes[0].t) {
                                 v1[0] = px.getValueAtTime((px.keyframes[0].t + 0.01) / frameRate, 0);
                                 v1[1] = py.getValueAtTime((py.keyframes[0].t + 0.01) / frameRate, 0);
@@ -2720,7 +2842,9 @@
                         this.pz = PropertyFactory.getProp(elem, data.p.z, 0, 0, this);
                     }
                 } else {
-                    this.p = PropertyFactory.getProp(elem, data.p || { k: [0, 0, 0] }, 1, 0, this);
+                    this.p = PropertyFactory.getProp(elem, data.p || {
+                        k: [0, 0, 0]
+                    }, 1, 0, this);
                 }
                 if (data.rx) {
                     this.rx = PropertyFactory.getProp(elem, data.rx, 0, degToRads, this);
@@ -2736,19 +2860,28 @@
                     //sh Indicates it needs to be capped between -180 and 180
                     this.or.sh = true;
                 } else {
-                    this.r = PropertyFactory.getProp(elem, data.r || { k: 0 }, 0, degToRads, this);
+                    this.r = PropertyFactory.getProp(elem, data.r || {
+                        k: 0
+                    }, 0, degToRads, this);
                 }
                 if (data.sk) {
                     this.sk = PropertyFactory.getProp(elem, data.sk, 0, degToRads, this);
                     this.sa = PropertyFactory.getProp(elem, data.sa, 0, degToRads, this);
                 }
-                this.a = PropertyFactory.getProp(elem, data.a || { k: [0, 0, 0] }, 1, 0, this);
-                this.s = PropertyFactory.getProp(elem, data.s || { k: [100, 100, 100] }, 1, 0.01, this);
+                this.a = PropertyFactory.getProp(elem, data.a || {
+                    k: [0, 0, 0]
+                }, 1, 0, this);
+                this.s = PropertyFactory.getProp(elem, data.s || {
+                    k: [100, 100, 100]
+                }, 1, 0.01, this);
                 // Opacity is not part of the transform properties, that's why it won't use this.dynamicProperties. That way transforms won't get updated if opacity changes.
                 if (data.o) {
                     this.o = PropertyFactory.getProp(elem, data.o, 0, 0.01, elem);
                 } else {
-                    this.o = { _mdf: false, v: 1 };
+                    this.o = {
+                        _mdf: false,
+                        v: 1
+                    };
                 }
                 this._isDirty = true;
                 if (!this.dynamicProperties.length) {
@@ -2776,6 +2909,7 @@
             };
 
         }());
+
         function ShapePath() {
             this.c = false;
             this._length = 0;
@@ -2844,7 +2978,9 @@
         ShapePath.prototype.reverse = function () {
             var newPath = new ShapePath();
             newPath.setPathData(this.c, this._length);
-            var vertices = this.v, outPoints = this.o, inPoints = this.i;
+            var vertices = this.v,
+                outPoints = this.o,
+                inPoints = this.i;
             var init = 0;
             if (this.c) {
                 newPath.setTripleAt(vertices[0][0], vertices[0][1], inPoints[0][0], inPoints[0][1], outPoints[0][0], outPoints[0][1], 0, false);
@@ -2882,7 +3018,9 @@
                     isHold = true;
                 } else {
                     var i = iterationIndex;
-                    var len = kf.length - 1, flag = true, keyData, nextKeyData;
+                    var len = kf.length - 1,
+                        flag = true,
+                        keyData, nextKeyData;
                     while (flag) {
                         keyData = kf[i];
                         nextKeyData = kf[i + 1];
@@ -2957,12 +3095,12 @@
                 }
                 var i, len = shape1._length;
                 for (i = 0; i < len; i += 1) {
-                    if (shape1.v[i][0] !== shape2.v[i][0]
-                        || shape1.v[i][1] !== shape2.v[i][1]
-                        || shape1.o[i][0] !== shape2.o[i][0]
-                        || shape1.o[i][1] !== shape2.o[i][1]
-                        || shape1.i[i][0] !== shape2.i[i][0]
-                        || shape1.i[i][1] !== shape2.i[i][1]) {
+                    if (shape1.v[i][0] !== shape2.v[i][0] ||
+                        shape1.v[i][1] !== shape2.v[i][1] ||
+                        shape1.o[i][0] !== shape2.o[i][0] ||
+                        shape1.o[i][1] !== shape2.o[i][1] ||
+                        shape1.i[i][0] !== shape2.i[i][0] ||
+                        shape1.i[i][1] !== shape2.i[i][1]) {
                         return false;
                     }
                 }
@@ -3050,7 +3188,10 @@
                 this.paths.addShape(this.v);
                 this.lastFrame = initFrame;
                 this.reset = resetShape;
-                this._caching = { lastFrame: initFrame, lastIndex: 0 };
+                this._caching = {
+                    lastFrame: initFrame,
+                    lastIndex: 0
+                };
                 this.effectsSequence = [interpolateShapeCurrentTime.bind(this)];
             }
             KeyframedShapeProperty.prototype.getValue = processEffectsSequence;
@@ -3103,7 +3244,10 @@
                         }
                     },
                     convertEllToPath: function () {
-                        var p0 = this.p.v[0], p1 = this.p.v[1], s0 = this.s.v[0] / 2, s1 = this.s.v[1] / 2;
+                        var p0 = this.p.v[0],
+                            p1 = this.p.v[1],
+                            s0 = this.s.v[0] / 2,
+                            s1 = this.s.v[1] / 2;
                         var _cw = this.d !== 3;
                         var _v = this.v;
                         _v.v[0][0] = p0;
@@ -3209,8 +3353,8 @@
                             var y = rad * Math.sin(currentAng);
                             var ox = x === 0 && y === 0 ? 0 : y / Math.sqrt(x * x + y * y);
                             var oy = x === 0 && y === 0 ? 0 : -x / Math.sqrt(x * x + y * y);
-                            x += + this.p.v[0];
-                            y += + this.p.v[1];
+                            x += +this.p.v[0];
+                            y += +this.p.v[1];
                             this.v.setTripleAt(x, y, x - ox * perimSegment * roundness * dir, y - oy * perimSegment * roundness * dir, x + ox * perimSegment * roundness * dir, y + oy * perimSegment * roundness * dir, i, true);
 
                             /*this.v.v[i] = [x,y];
@@ -3236,8 +3380,8 @@
                             var y = rad * Math.sin(currentAng);
                             var ox = x === 0 && y === 0 ? 0 : y / Math.sqrt(x * x + y * y);
                             var oy = x === 0 && y === 0 ? 0 : -x / Math.sqrt(x * x + y * y);
-                            x += + this.p.v[0];
-                            y += + this.p.v[1];
+                            x += +this.p.v[0];
+                            y += +this.p.v[1];
                             this.v.setTripleAt(x, y, x - ox * perimSegment * roundness * dir, y - oy * perimSegment * roundness * dir, x + ox * perimSegment * roundness * dir, y + oy * perimSegment * roundness * dir, i, true);
                             currentAng += angle * dir;
                         }
@@ -3277,7 +3421,10 @@
 
                 RectShapeProperty.prototype = {
                     convertRectToPath: function () {
-                        var p0 = this.p.v[0], p1 = this.p.v[1], v0 = this.s.v[0] / 2, v1 = this.s.v[1] / 2;
+                        var p0 = this.p.v[0],
+                            p1 = this.p.v[1],
+                            v0 = this.s.v[0] / 2,
+                            v1 = this.s.v[1] / 2;
                         var round = bm_min(v0, v1, this.r.v);
                         var cPoint = round * (1 - roundCorner);
                         this.v._length = 0;
@@ -3388,14 +3535,18 @@
             return ob;
         }());
 
-        function ShapeModifier() { }
-        ShapeModifier.prototype.initModifierProperties = function () { };
-        ShapeModifier.prototype.addShapeToModifier = function () { };
+        function ShapeModifier() {}
+        ShapeModifier.prototype.initModifierProperties = function () {};
+        ShapeModifier.prototype.addShapeToModifier = function () {};
         ShapeModifier.prototype.addShape = function (data) {
             if (!this.closed) {
                 // Adding shape to dynamic properties. It covers the case where a shape has no effects applied, to reset it's _mdf state on every tick.
                 data.sh.container.addDynamicProperty(data.sh);
-                var shapeData = { shape: data.sh, data: data, localShapeCollection: shapeCollection_pool.newShapeCollection() };
+                var shapeData = {
+                    shape: data.sh,
+                    data: data,
+                    localShapeCollection: shapeCollection_pool.newShapeCollection()
+                };
                 this.shapes.push(shapeData);
                 this.addShapeToModifier(shapeData);
                 if (this._isAnimated) {
@@ -3426,8 +3577,8 @@
         };
 
         extendPrototype([DynamicPropertyContainer], ShapeModifier);
-        function TrimModifier() {
-        }
+
+        function TrimModifier() {}
         extendPrototype([ShapeModifier], TrimModifier);
         TrimModifier.prototype.initModifierProperties = function (elem, data) {
             this.s = PropertyFactory.getProp(elem, data.s, 0, 0.01, this);
@@ -3467,7 +3618,8 @@
                 });
             }
             var shapeSegments = [];
-            var i, len = segments.length, segmentOb;
+            var i, len = segments.length,
+                segmentOb;
             for (i = 0; i < len; i += 1) {
                 segmentOb = segments[i];
                 if (segmentOb.e * totalModifierLength < addedLength || segmentOb.s * totalModifierLength > addedLength + shapeLength) {
@@ -3528,7 +3680,8 @@
                 e = this.eValue;
             }
             var shapePaths;
-            var i, len = this.shapes.length, j, jLen;
+            var i, len = this.shapes.length,
+                j, jLen;
             var pathsData, pathData, totalShapeLength, totalModifierLength = 0;
 
             if (e === s) {
@@ -3538,7 +3691,8 @@
                     this.shapes[i].shape.paths = this.shapes[i].localShapeCollection;
                 }
             } else if (!((e === 1 && s === 0) || (e === 0 && s === 1))) {
-                var segments = [], shapeData, localShapeCollection;
+                var segments = [],
+                    shapeData, localShapeCollection;
                 for (i = 0; i < len; i += 1) {
                     shapeData = this.shapes[i];
                     // if shape hasn't changed and trim properties haven't changed, cached previous path can be used
@@ -3565,7 +3719,10 @@
                         shapeData.shape._mdf = true;
                     }
                 }
-                var shapeS = s, shapeE = e, addedLength = 0, edges;
+                var shapeS = s,
+                    shapeE = e,
+                    addedLength = 0,
+                    edges;
                 for (i = len - 1; i >= 0; i -= 1) {
                     shapeData = this.shapes[i];
                     if (shapeData.shape._mdf) {
@@ -3576,7 +3733,9 @@
                             edges = this.calculateShapeEdges(s, e, shapeData.totalShapeLength, addedLength, totalModifierLength);
                             addedLength += shapeData.totalShapeLength;
                         } else {
-                            edges = [[shapeS, shapeE]];
+                            edges = [
+                                [shapeS, shapeE]
+                            ];
                         }
                         jLen = edges.length;
                         for (j = 0; j < jLen; j += 1) {
@@ -3661,7 +3820,8 @@
         TrimModifier.prototype.addShapes = function (shapeData, shapeSegment, shapePath) {
             var pathsData = shapeData.pathsData;
             var shapePaths = shapeData.shape.paths.shapes;
-            var i, len = shapeData.shape.paths._length, j, jLen;
+            var i, len = shapeData.shape.paths._length,
+                j, jLen;
             var addedLength = 0;
             var currentLengthData, segmentCount;
             var lengths;
@@ -3744,7 +3904,8 @@
 
 
         ShapeModifiers.registerModifier('tm', TrimModifier);
-        function RoundCornersModifier() { }
+
+        function RoundCornersModifier() {}
         extendPrototype([ShapeModifier], RoundCornersModifier);
         RoundCornersModifier.prototype.initModifierProperties = function (elem, data) {
             this.getValue = this.processKeys;
@@ -3837,7 +3998,8 @@
         };
 
         ShapeModifiers.registerModifier('rd', RoundCornersModifier);
-        function RepeaterModifier() { }
+
+        function RepeaterModifier() {}
         extendPrototype([ShapeModifier], RepeaterModifier);
 
         RepeaterModifier.prototype.initModifierProperties = function (elem, data) {
@@ -3934,7 +4096,53 @@
                             it: this.cloneElements(this._elements),
                             ty: 'gr'
                         };
-                        group.it.push({ "a": { "a": 0, "ix": 1, "k": [0, 0] }, "nm": "Transform", "o": { "a": 0, "ix": 7, "k": 100 }, "p": { "a": 0, "ix": 2, "k": [0, 0] }, "r": { "a": 1, "ix": 6, "k": [{ s: 0, e: 0, t: 0 }, { s: 0, e: 0, t: 1 }] }, "s": { "a": 0, "ix": 3, "k": [100, 100] }, "sa": { "a": 0, "ix": 5, "k": 0 }, "sk": { "a": 0, "ix": 4, "k": 0 }, "ty": "tr" });
+                        group.it.push({
+                            "a": {
+                                "a": 0,
+                                "ix": 1,
+                                "k": [0, 0]
+                            },
+                            "nm": "Transform",
+                            "o": {
+                                "a": 0,
+                                "ix": 7,
+                                "k": 100
+                            },
+                            "p": {
+                                "a": 0,
+                                "ix": 2,
+                                "k": [0, 0]
+                            },
+                            "r": {
+                                "a": 1,
+                                "ix": 6,
+                                "k": [{
+                                    s: 0,
+                                    e: 0,
+                                    t: 0
+                                }, {
+                                    s: 0,
+                                    e: 0,
+                                    t: 1
+                                }]
+                            },
+                            "s": {
+                                "a": 0,
+                                "ix": 3,
+                                "k": [100, 100]
+                            },
+                            "sa": {
+                                "a": 0,
+                                "ix": 5,
+                                "k": 0
+                            },
+                            "sk": {
+                                "a": 0,
+                                "ix": 4,
+                                "k": 0
+                            },
+                            "ty": "tr"
+                        });
 
                         this.arr.splice(0, 0, group);
                         this._groups.splice(0, 0, group);
@@ -3984,7 +4192,7 @@
                         iteration -= 1;
                     }
                     if (offsetModulo) {
-                        this.applyTransforms(this.pMatrix, this.rMatrix, this.sMatrix, this.tr, - offsetModulo, true);
+                        this.applyTransforms(this.pMatrix, this.rMatrix, this.sMatrix, this.tr, -offsetModulo, true);
                         iteration -= offsetModulo;
                     }
                 }
@@ -4036,9 +4244,10 @@
             }
         };
 
-        RepeaterModifier.prototype.addShape = function () { };
+        RepeaterModifier.prototype.addShape = function () {};
 
         ShapeModifiers.registerModifier('rp', RepeaterModifier);
+
         function ShapeCollection() {
             this._length = 0;
             this._maxLength = 4;
@@ -4061,6 +4270,7 @@
             }
             this._length = 0;
         };
+
         function DashProperty(elem, data, renderer, container) {
             this.elem = elem;
             this.frameId = -1;
@@ -4071,11 +4281,15 @@
             this.dashArray = createTypedArray('float32', data.length ? data.length - 1 : 0);
             this.dashoffset = createTypedArray('float32', 1);
             this.initDynamicPropertyContainer(container);
-            var i, len = data.length || 0, prop;
+            var i, len = data.length || 0,
+                prop;
             for (i = 0; i < len; i += 1) {
                 prop = PropertyFactory.getProp(elem, data[i].v, 0, 0, this);
                 this.k = prop.k || this.k;
-                this.dataProps[i] = { n: data[i].n, p: prop };
+                this.dataProps[i] = {
+                    n: data[i].n,
+                    p: prop
+                };
             }
             if (!this.k) {
                 this.getValue(true);
@@ -4091,7 +4305,8 @@
             this.iterateDynamicProperties();
             this._mdf = this._mdf || forceRender;
             if (this._mdf) {
-                var i = 0, len = this.dataProps.length;
+                var i = 0,
+                    len = this.dataProps.length;
                 if (this.renderer === 'svg') {
                     this.dashStr = '';
                 }
@@ -4109,6 +4324,7 @@
             }
         };
         extendPrototype([DynamicPropertyContainer], DashProperty);
+
         function GradientProperty(elem, data, container) {
             this.data = data;
             this.c = createTypedArray('uint8c', data.p * 4);
@@ -4125,7 +4341,9 @@
         }
 
         GradientProperty.prototype.comparePoints = function (values, points) {
-            var i = 0, len = this.o.length / 2, diff;
+            var i = 0,
+                len = this.o.length / 2,
+                diff;
             while (i < len) {
                 diff = Math.abs(values[i * 4] - values[points * 4 + i * 2]);
                 if (diff > 0.01) {
@@ -4141,7 +4359,8 @@
                 return false;
             }
             if (this.data.k.k[0].s) {
-                var i = 0, len = this.data.k.k.length;
+                var i = 0,
+                    len = this.data.k.k.length;
                 while (i < len) {
                     if (!this.comparePoints(this.data.k.k[i].s, this.data.p)) {
                         return false;
@@ -4279,7 +4498,8 @@
             }
 
             function getImage(assetData) {
-                var i = 0, len = this.images.length;
+                var i = 0,
+                    len = this.images.length;
                 while (i < len) {
                     if (this.images[i].assetData === assetData) {
                         return this.images[i].img;
@@ -4369,7 +4589,7 @@
                 try {
                     // This crashes on Android WebView prior to KitKat
                     xhr.responseType = "json";
-                } catch (err) { }
+                } catch (err) {}
                 xhr.send();
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4) {
@@ -4413,7 +4633,8 @@
         }
 
         TextAnimatorProperty.prototype.searchProperties = function () {
-            var i, len = this._textData.a.length, animatorProps;
+            var i, len = this._textData.a.length,
+                animatorProps;
             var getProp = PropertyFactory.getProp;
             for (i = 0; i < len; i += 1) {
                 animatorProps = this._textData.a[i];
@@ -4448,7 +4669,8 @@
             var data = this.data;
             var xPos, yPos;
             var i, len;
-            var letters = documentData.l, pathInfo, currentLength, currentPoint, segmentLength, flag, pointInd, segmentInd, prevPoint, points, segments, partialLength, totalLength, perc, tanAngle, mask;
+            var letters = documentData.l,
+                pathInfo, currentLength, currentPoint, segmentLength, flag, pointInd, segmentInd, prevPoint, points, segments, partialLength, totalLength, perc, tanAngle, mask;
             if (this._hasMaskedPath) {
                 mask = this._pathData.m;
                 if (!this._pathData.n || this._pathData._mdf) {
@@ -4465,20 +4687,14 @@
                     var bezierData;
                     totalLength = 0;
                     for (i = 0; i < len; i += 1) {
-                        bezierData = bez.buildBezierData(paths.v[i]
-                            , paths.v[i + 1]
-                            , [paths.o[i][0] - paths.v[i][0], paths.o[i][1] - paths.v[i][1]]
-                            , [paths.i[i + 1][0] - paths.v[i + 1][0], paths.i[i + 1][1] - paths.v[i + 1][1]]);
+                        bezierData = bez.buildBezierData(paths.v[i], paths.v[i + 1], [paths.o[i][0] - paths.v[i][0], paths.o[i][1] - paths.v[i][1]], [paths.i[i + 1][0] - paths.v[i + 1][0], paths.i[i + 1][1] - paths.v[i + 1][1]]);
                         pathInfo.tLength += bezierData.segmentLength;
                         pathInfo.segments.push(bezierData);
                         totalLength += bezierData.segmentLength;
                     }
                     i = len;
                     if (mask.v.c) {
-                        bezierData = bez.buildBezierData(paths.v[i]
-                            , paths.v[0]
-                            , [paths.o[i][0] - paths.v[i][0], paths.o[i][1] - paths.v[i][1]]
-                            , [paths.i[0][0] - paths.v[0][0], paths.i[0][1] - paths.v[0][1]]);
+                        bezierData = bez.buildBezierData(paths.v[i], paths.v[0], [paths.o[i][0] - paths.v[i][0], paths.o[i][1] - paths.v[i][1]], [paths.i[0][0] - paths.v[0][0], paths.i[0][1] - paths.v[0][1]]);
                         pathInfo.tLength += bezierData.segmentLength;
                         pathInfo.segments.push(bezierData);
                         totalLength += bezierData.segmentLength;
@@ -4530,12 +4746,18 @@
             jLen = animators.length;
             var lastLetter;
 
-            var mult, ind = -1, offf, xPathPos, yPathPos;
-            var initPathPos = currentLength, initSegmentInd = segmentInd, initPointInd = pointInd, currentLine = -1;
+            var mult, ind = -1,
+                offf, xPathPos, yPathPos;
+            var initPathPos = currentLength,
+                initSegmentInd = segmentInd,
+                initPointInd = pointInd,
+                currentLine = -1;
             var elemOpacity;
             var sc, sw, fc, k;
             var lineLength = 0;
-            var letterSw, letterSc, letterFc, letterM = '', letterP = this.defaultPropsArray, letterO;
+            var letterSw, letterSc, letterFc, letterM = '',
+                letterP = this.defaultPropsArray,
+                letterO;
 
             //
             if (documentData.j === 2 || documentData.j === 1) {
@@ -4953,8 +5175,11 @@
         TextAnimatorProperty.prototype.mHelper = new Matrix();
         TextAnimatorProperty.prototype.defaultPropsArray = [];
         extendPrototype([DynamicPropertyContainer], TextAnimatorProperty);
+
         function TextAnimatorDataProperty(elem, animatorProps, container) {
-            var defaultData = { propType: false };
+            var defaultData = {
+                propType: false
+            };
             var getProp = PropertyFactory.getProp;
             var textAnimator_animatables = animatorProps.a;
             this.a = {
@@ -4979,6 +5204,7 @@
             this.s = TextSelectorProp.getTextSelectorProp(elem, animatorProps.s, container);
             this.s.t = animatorProps.s.t;
         }
+
         function LetterProps(o, sw, sc, fc, m, p) {
             this.o = o;
             this.sw = sw;
@@ -5037,6 +5263,7 @@
             }
             return updated;
         };
+
         function TextProperty(elem, data) {
             this._frameId = initialDefaultFrame;
             this.pv = '';
@@ -5159,9 +5386,11 @@
         }
 
         TextProperty.prototype.getKeyframeValue = function () {
-            var textKeys = this.data.d.k, textDocumentData;
+            var textKeys = this.data.d.k,
+                textDocumentData;
             var frameNum = this.elem.comp.renderedFrame;
-            var i = 0, len = textKeys.length;
+            var i = 0,
+                len = textKeys.length;
             while (i <= len - 1) {
                 textDocumentData = textKeys[i].s;
                 if (i === len - 1 || textKeys[i + 1].t > frameNum) {
@@ -5178,7 +5407,8 @@
         TextProperty.prototype.buildFinalText = function (text) {
             var combinedCharacters = FontManager.getCombinedCharacterCodes();
             var charactersArray = [];
-            var i = 0, len = text.length;
+            var i = 0,
+                len = text.length;
             var charCode;
             while (i < len) {
                 charCode = text.charCodeAt(i);
@@ -5208,9 +5438,13 @@
             var data = this.data;
             var letters = [];
             var i, len;
-            var newLineFlag, index = 0, val;
+            var newLineFlag, index = 0,
+                val;
             var anchorGrouping = data.m.g;
-            var currentSize = 0, currentPos = 0, currentLine = 0, lineWidths = [];
+            var currentSize = 0,
+                currentPos = 0,
+                currentLine = 0,
+                lineWidths = [];
             var lineWidth = 0;
             var maxLineWidth = 0;
             var j, jLen;
@@ -5218,7 +5452,8 @@
             var charData, cLength = 0;
             var styles = fontData.fStyle ? fontData.fStyle.split(' ') : [];
 
-            var fWeight = 'normal', fStyle = 'normal';
+            var fWeight = 'normal',
+                fStyle = 'normal';
             len = styles.length;
             var styleName;
             for (i = 0; i < len; i += 1) {
@@ -5311,7 +5546,7 @@
                 }
 
             }
-            lineWidth = - trackingOffset;
+            lineWidth = -trackingOffset;
             cLength = 0;
             var uncollapsedSpaces = 0;
             var currentChar;
@@ -5325,7 +5560,7 @@
                     uncollapsedSpaces = 0;
                     lineWidths.push(lineWidth);
                     maxLineWidth = lineWidth > maxLineWidth ? lineWidth : maxLineWidth;
-                    lineWidth = - 2 * trackingOffset;
+                    lineWidth = -2 * trackingOffset;
                     val = '';
                     newLineFlag = true;
                     currentLine += 1;
@@ -5348,7 +5583,16 @@
                     lineWidth += cLength + trackingOffset + uncollapsedSpaces;
                     uncollapsedSpaces = 0;
                 }
-                letters.push({ l: cLength, an: cLength, add: currentSize, n: newLineFlag, anIndexes: [], val: val, line: currentLine, animatorJustifyOffset: 0 });
+                letters.push({
+                    l: cLength,
+                    an: cLength,
+                    add: currentSize,
+                    n: newLineFlag,
+                    anIndexes: [],
+                    val: val,
+                    line: currentLine,
+                    animatorJustifyOffset: 0
+                });
                 if (anchorGrouping == 2) {
                     currentSize += cLength;
                     if (val === '' || val === '\u00A0' || i === len - 1) {
@@ -5395,10 +5639,10 @@
                 documentData.boxWidth = maxLineWidth;
                 switch (documentData.j) {
                     case 1:
-                        documentData.justifyOffset = - documentData.boxWidth;
+                        documentData.justifyOffset = -documentData.boxWidth;
                         break;
                     case 2:
-                        documentData.justifyOffset = - documentData.boxWidth / 2;
+                        documentData.justifyOffset = -documentData.boxWidth / 2;
                         break;
                     default:
                         documentData.justifyOffset = 0;
@@ -5406,7 +5650,8 @@
             }
             documentData.lineWidths = lineWidths;
 
-            var animators = data.a, animatorData, letterData;
+            var animators = data.a,
+                animatorData, letterData;
             jLen = animators.length;
             var based, ind, indexes = [];
             for (j = 0; j < jLen; j += 1) {
@@ -5433,7 +5678,8 @@
                     }
                 }
                 data.a[j].s.totalChars = ind;
-                var currentInd = -1, newInd;
+                var currentInd = -1,
+                    newInd;
                 if (animatorData.s.rn === 1) {
                     for (i = 0; i < len; i += 1) {
                         letterData = letters[i];
@@ -5493,15 +5739,25 @@
                 this.finalS = 0;
                 this.finalE = 0;
                 this.initDynamicPropertyContainer(elem);
-                this.s = PropertyFactory.getProp(elem, data.s || { k: 0 }, 0, 0, this);
+                this.s = PropertyFactory.getProp(elem, data.s || {
+                    k: 0
+                }, 0, 0, this);
                 if ('e' in data) {
                     this.e = PropertyFactory.getProp(elem, data.e, 0, 0, this);
                 } else {
-                    this.e = { v: 100 };
+                    this.e = {
+                        v: 100
+                    };
                 }
-                this.o = PropertyFactory.getProp(elem, data.o || { k: 0 }, 0, 0, this);
-                this.xe = PropertyFactory.getProp(elem, data.xe || { k: 0 }, 0, 0, this);
-                this.ne = PropertyFactory.getProp(elem, data.ne || { k: 0 }, 0, 0, this);
+                this.o = PropertyFactory.getProp(elem, data.o || {
+                    k: 0
+                }, 0, 0, this);
+                this.xe = PropertyFactory.getProp(elem, data.xe || {
+                    k: 0
+                }, 0, 0, this);
+                this.ne = PropertyFactory.getProp(elem, data.ne || {
+                    k: 0
+                }, 0, 0, this);
                 this.a = PropertyFactory.getProp(elem, data.a, 0, 0.01, this);
                 if (!this.dynamicProperties.length) {
                     this.getValue();
@@ -5520,14 +5776,12 @@
                     var y2 = 1;
                     if (this.ne.v > 0) {
                         x1 = this.ne.v / 100.0;
-                    }
-                    else {
+                    } else {
                         y1 = -this.ne.v / 100.0;
                     }
                     if (this.xe.v > 0) {
                         x2 = 1.0 - this.xe.v / 100.0;
-                    }
-                    else {
+                    } else {
                         y2 = 1.0 + this.xe.v / 100.0;
                     }
                     var easer = BezierFactory.getBezierEasing(x1, y1, x2, y2).get;
@@ -5696,7 +5950,8 @@
             }
 
             function release(shapePath) {
-                var len = shapePath._length, i;
+                var len = shapePath._length,
+                    i;
                 for (i = 0; i < len; i += 1) {
                     point_pool.release(shapePath.v[i]);
                     point_pool.release(shapePath.i[i]);
@@ -5795,9 +6050,11 @@
             }
             return pool_factory(8, create);
         }());
-        function BaseRenderer() { }
+
+        function BaseRenderer() {}
         BaseRenderer.prototype.checkLayers = function (num) {
-            var i, len = this.layers.length, data;
+            var i, len = this.layers.length,
+                data;
             this.completeLayers = true;
             for (i = len - 1; i >= 0; i--) {
                 if (!this.elements[i]) {
@@ -5871,7 +6128,8 @@
         BaseRenderer.prototype.buildElementParenting = function (element, parentName, hierarchy) {
             var elements = this.elements;
             var layers = this.layers;
-            var i = 0, len = layers.length;
+            var i = 0,
+                len = layers.length;
             while (i < len) {
                 if (layers[i].ind == parentName) {
                     if (!elements[i] || elements[i] === true) {
@@ -5921,6 +6179,7 @@
                 h: animData.h
             }
         }
+
         function SVGRenderer(animationItem, config) {
             this.animationItem = animationItem;
             this.layers = null;
@@ -6077,8 +6336,7 @@
             this.animationItem = null;
         };
 
-        SVGRenderer.prototype.updateContainerSize = function () {
-        };
+        SVGRenderer.prototype.updateContainerSize = function () {};
 
         SVGRenderer.prototype.buildItem = function (pos) {
             var elements = this.elements;
@@ -6111,7 +6369,8 @@
                 var element = this.pendingElements.pop();
                 element.checkParenting();
                 if (element.data.tt) {
-                    var i = 0, len = this.elements.length;
+                    var i = 0,
+                        len = this.elements.length;
                     while (i < len) {
                         if (this.elements[i] === element) {
                             element.setMatte(this.elements[i - 1].layerId);
@@ -6637,7 +6896,8 @@
         HybridRenderer.prototype.createNull = SVGRenderer.prototype.createNull;
 
         HybridRenderer.prototype.getThreeDContainerByPos = function (pos) {
-            var i = 0, len = this.threeDElements.length;
+            var i = 0,
+                len = this.threeDElements.length;
             while (i < len) {
                 if (this.threeDElements[i].startPos <= pos && this.threeDElements[i].endPos >= pos) {
                     return this.threeDElements[i].perspectiveElem;
@@ -6697,7 +6957,8 @@
         };
 
         HybridRenderer.prototype.addTo3dContainer = function (elem, pos) {
-            var i = 0, len = this.threeDElements.length;
+            var i = 0,
+                len = this.threeDElements.length;
             while (i < len) {
                 if (pos <= this.threeDElements[i].endPos) {
                     var j = this.threeDElements[i].startPos;
@@ -6838,7 +7099,8 @@
             var j, jLen;
             var layerId = createElementID();
             var rect, expansor, feMorph, x;
-            var maskType = 'clipPath', maskRef = 'clip-path';
+            var maskType = 'clipPath',
+                maskRef = 'clip-path';
             for (i = 0; i < len; i++) {
                 if ((properties[i].mode !== 'a' && properties[i].mode !== 'n') || properties[i].inv || properties[i].o.k !== 100 || properties[i].o.x) {
                     maskType = 'mask';
@@ -7046,7 +7308,7 @@
          *
          */
 
-        function HierarchyElement() { }
+        function HierarchyElement() {}
 
         HierarchyElement.prototype = {
             /**
@@ -7097,7 +7359,7 @@
          *
          */
 
-        function FrameElement() { }
+        function FrameElement() {}
 
         FrameElement.prototype = {
             /**
@@ -7141,12 +7403,15 @@
                 }
             }
         };
-        function TransformElement() { }
+
+        function TransformElement() {}
 
         TransformElement.prototype = {
             initTransform: function () {
                 this.finalTransform = {
-                    mProp: this.data.ks ? TransformPropertyFactory.getTransformProperty(this, this.data.ks, this) : { o: 0 },
+                    mProp: this.data.ks ? TransformPropertyFactory.getTransformProperty(this, this.data.ks, this) : {
+                        o: 0
+                    },
                     _matMdf: false,
                     _opMdf: false,
                     mat: new Matrix()
@@ -7168,7 +7433,8 @@
                 if (this.hierarchy) {
                     var mat;
                     var finalMat = this.finalTransform.mat;
-                    var i = 0, len = this.hierarchy.length;
+                    var i = 0,
+                        len = this.hierarchy.length;
                     //Checking if any of the transformation matrices in the hierarchy chain has changed.
                     if (!this.finalTransform._matMdf) {
                         while (i < len) {
@@ -7205,7 +7471,8 @@
                         flag = false;
                     }
                 }
-                var i, len = transforms.length, ptNew;
+                var i, len = transforms.length,
+                    ptNew;
                 for (i = 0; i < len; i += 1) {
                     ptNew = transforms[i].mat.applyToPointArray(0, 0, 0);
                     //ptNew = transforms[i].mat.applyToPointArray(pt[0],pt[1],pt[2]);
@@ -7215,6 +7482,7 @@
             },
             mHelper: new Matrix()
         };
+
         function RenderableElement() {
 
         }
@@ -7296,13 +7564,20 @@
             },
             getLayerSize: function () {
                 if (this.data.ty === 5) {
-                    return { w: this.data.textData.width, h: this.data.textData.height };
+                    return {
+                        w: this.data.textData.width,
+                        h: this.data.textData.height
+                    };
                 } else {
-                    return { w: this.data.width, h: this.data.height };
+                    return {
+                        w: this.data.width,
+                        h: this.data.height
+                    };
                 }
             }
         };
-        function RenderableDOMElement() { }
+
+        function RenderableDOMElement() {}
 
         (function () {
             var _prototype = {
@@ -7349,7 +7624,7 @@
                         this._isFirstFrame = false;
                     }
                 },
-                renderInnerContent: function () { },
+                renderInnerContent: function () {},
                 prepareFrame: function (num) {
                     this._mdf = false;
                     this.prepareRenderableFrame(num);
@@ -7363,10 +7638,12 @@
             };
             extendPrototype([RenderableElement, createProxyFunction(_prototype)], RenderableDOMElement);
         }());
+
         function ProcessedElement(element, position) {
             this.elem = element;
             this.pos = position;
         }
+
         function SVGStyleData(data, level) {
             this.data = data;
             this.type = data.ty;
@@ -7382,6 +7659,7 @@
             this.d = '';
             this._mdf = false;
         };
+
         function SVGShapeData(transformers, level, shape) {
             this.caches = [];
             this.styles = [];
@@ -7394,7 +7672,8 @@
             // One way of finding out is checking if all styles associated to this shape depend only of this shape
             this._isAnimated = !!shape.k;
             // TODO: commenting this for now since all shapes are animated
-            var i = 0, len = transformers.length;
+            var i = 0,
+                len = transformers.length;
             while (i < len) {
                 if (transformers[i].mProps.dynamicProperties.length) {
                     this._isAnimated = true;
@@ -7407,6 +7686,7 @@
         SVGShapeData.prototype.setAsAnimated = function () {
             this._isAnimated = true;
         }
+
         function SVGTransformData(mProps, op, container) {
             this.transform = {
                 mProps: mProps,
@@ -7416,6 +7696,7 @@
             this.elements = [];
             this._isAnimated = this.transform.mProps.dynamicProperties.length || this.transform.op.effectsSequence.length;
         }
+
         function SVGStrokeStyleData(elem, data, styleOb) {
             this.initDynamicPropertyContainer(elem);
             this.getValue = this.iterateDynamicProperties;
@@ -7428,6 +7709,7 @@
         }
 
         extendPrototype([DynamicPropertyContainer], SVGStrokeStyleData);
+
         function SVGFillStyleData(elem, data, styleOb) {
             this.initDynamicPropertyContainer(elem);
             this.getValue = this.iterateDynamicProperties;
@@ -7437,6 +7719,7 @@
         }
 
         extendPrototype([DynamicPropertyContainer], SVGFillStyleData);
+
         function SVGGradientFillStyleData(elem, data, styleOb) {
             this.initDynamicPropertyContainer(elem);
             this.getValue = this.iterateDynamicProperties;
@@ -7447,8 +7730,12 @@
             this.o = PropertyFactory.getProp(elem, data.o, 0, 0.01, this);
             this.s = PropertyFactory.getProp(elem, data.s, 1, null, this);
             this.e = PropertyFactory.getProp(elem, data.e, 1, null, this);
-            this.h = PropertyFactory.getProp(elem, data.h || { k: 0 }, 0, 0.01, this);
-            this.a = PropertyFactory.getProp(elem, data.a || { k: 0 }, 0, degToRads, this);
+            this.h = PropertyFactory.getProp(elem, data.h || {
+                k: 0
+            }, 0, 0.01, this);
+            this.a = PropertyFactory.getProp(elem, data.a || {
+                k: 0
+            }, 0, degToRads, this);
             this.g = new GradientProperty(elem, data.g, this);
             this.style = styleOb;
             this.stops = [];
@@ -7510,6 +7797,7 @@
         };
 
         extendPrototype([DynamicPropertyContainer], SVGGradientFillStyleData);
+
         function SVGGradientStrokeStyleData(elem, data, styleOb) {
             this.initDynamicPropertyContainer(elem);
             this.getValue = this.iterateDynamicProperties;
@@ -7520,6 +7808,7 @@
         }
 
         extendPrototype([SVGGradientFillStyleData, DynamicPropertyContainer], SVGGradientStrokeStyleData);
+
         function ShapeGroupData() {
             this.it = [];
             this.prevViewData = [];
@@ -7629,7 +7918,8 @@
             function renderGradient(styleData, itemData, isFirstFrame) {
                 var gfill = itemData.gf;
                 var hasOpacity = itemData.g._hasOpacity;
-                var pt1 = itemData.s.v, pt2 = itemData.e.v;
+                var pt1 = itemData.s.v,
+                    pt2 = itemData.e.v;
 
                 if (itemData.o._mdf || isFirstFrame) {
                     var attr = styleData.ty === 'gf' ? 'fill-opacity' : 'stroke-opacity';
@@ -7734,6 +8024,7 @@
 
             return ob;
         }())
+
         function ShapeTransformManager() {
             this.sequences = {};
             this.sequenceList = [];
@@ -7760,7 +8051,9 @@
                 return sequence;
             },
             processSequence: function (sequence, isFirstFrame) {
-                var i = 0, len = sequence.transforms.length, _mdf = isFirstFrame;
+                var i = 0,
+                    len = sequence.transforms.length,
+                    _mdf = isFirstFrame;
                 while (i < len && !isFirstFrame) {
                     if (sequence.transforms[i].transform.mProps._mdf) {
                         _mdf = true;
@@ -7790,6 +8083,7 @@
                 return '_' + this.transform_key_count++;
             }
         }
+
         function CVShapeData(element, data, styles, transformsManager) {
             this.styledShapes = [];
             this.tr = [0, 0, 0, 0, 0, 0];
@@ -7802,7 +8096,8 @@
                 ty = 7;
             }
             this.sh = ShapePropertyFactory.getShapeProp(element, data, ty, element);
-            var i, len = styles.length, styledShape;
+            var i, len = styles.length,
+                styledShape;
             for (i = 0; i < len; i += 1) {
                 if (!styles[i].closed) {
                     styledShape = {
@@ -7816,15 +8111,16 @@
         }
 
         CVShapeData.prototype.setAsAnimated = SVGShapeData.prototype.setAsAnimated;
-        function BaseElement() {
-        }
+
+        function BaseElement() {}
 
         BaseElement.prototype = {
             checkMasks: function () {
                 if (!this.data.hasMask) {
                     return false;
                 }
-                var i = 0, len = this.data.masksProperties.length;
+                var i = 0,
+                    len = this.data.masksProperties.length;
                 while (i < len) {
                     if ((this.data.masksProperties[i].mode !== 'n' && this.data.masksProperties[i].cl !== false)) {
                         return true;
@@ -7873,9 +8169,10 @@
             },
             getType: function () {
                 return this.type;
-            }
-            , sourceRectAtTime: function () { }
+            },
+            sourceRectAtTime: function () {}
         }
+
         function NullElement(data, globalData, comp) {
             this.initFrame();
             this.initBaseData(data, globalData, comp);
@@ -7888,26 +8185,21 @@
             this.prepareProperties(num, true);
         };
 
-        NullElement.prototype.renderFrame = function () {
-        };
+        NullElement.prototype.renderFrame = function () {};
 
         NullElement.prototype.getBaseElement = function () {
             return null;
         };
 
-        NullElement.prototype.destroy = function () {
-        };
+        NullElement.prototype.destroy = function () {};
 
-        NullElement.prototype.sourceRectAtTime = function () {
-        };
+        NullElement.prototype.sourceRectAtTime = function () {};
 
-        NullElement.prototype.hide = function () {
-        };
+        NullElement.prototype.hide = function () {};
 
         extendPrototype([BaseElement, TransformElement, HierarchyElement, FrameElement], NullElement);
 
-        function SVGBaseElement() {
-        }
+        function SVGBaseElement() {}
 
         SVGBaseElement.prototype = {
             initRendererElement: function () {
@@ -8063,8 +8355,8 @@
                 this.matteElement.setAttribute("mask", "url(" + locationHref + "#" + id + ")");
             }
         };
-        function IShapeElement() {
-        }
+
+        function IShapeElement() {}
 
         IShapeElement.prototype = {
             addShapeToModifiers: function (data) {
@@ -8074,7 +8366,8 @@
                 }
             },
             isShapeInAnimatedModifiers: function (data) {
-                var i = 0, len = this.shapeModifiers.length;
+                var i = 0,
+                    len = this.shapeModifiers.length;
                 while (i < len) {
                     if (this.shapeModifiers[i].isAnimatedWithShape(data)) {
                         return true;
@@ -8108,7 +8401,8 @@
             },
             searchProcessedElement: function (elem) {
                 var elements = this.processedElements;
-                var i = 0, len = elements.length;
+                var i = 0,
+                    len = elements.length;
                 while (i < len) {
                     if (elements[i].elem === elem) {
                         return elements[i].pos;
@@ -8134,8 +8428,8 @@
                 this.prepareProperties(num, this.isInRange);
             }
         };
-        function ITextElement() {
-        }
+
+        function ITextElement() {}
 
         ITextElement.prototype.initElement = function (data, globalData, comp) {
             this.lettersChangedFlag = true;
@@ -8214,7 +8508,8 @@
         ITextElement.prototype.destroy = function () {
 
         };
-        function ICompElement() { }
+
+        function ICompElement() {}
 
         extendPrototype([BaseElement, TransformElement, HierarchyElement, FrameElement, RenderableDOMElement], ICompElement);
 
@@ -8311,7 +8606,12 @@
         function IImageElement(data, globalData, comp) {
             this.assetData = globalData.getAssetData(data.refId);
             this.initElement(data, globalData, comp);
-            this.sourceRect = { top: 0, left: 0, width: this.assetData.w, height: this.assetData.h };
+            this.sourceRect = {
+                top: 0,
+                left: 0,
+                width: this.assetData.w,
+                height: this.assetData.h
+            };
         }
 
         extendPrototype([BaseElement, TransformElement, SVGBaseElement, HierarchyElement, FrameElement, RenderableDOMElement], IImageElement);
@@ -8332,6 +8632,7 @@
         IImageElement.prototype.sourceRectAtTime = function () {
             return this.sourceRect;
         }
+
         function ISolidElement(data, globalData, comp) {
             this.initElement(data, globalData, comp);
         }
@@ -8348,6 +8649,7 @@
             rect.setAttribute('fill', this.data.sc);
             this.layerElement.appendChild(rect);
         };
+
         function SVGCompElement(data, globalData, comp) {
             this.layers = data.layers;
             this.supports3d = true;
@@ -8356,10 +8658,13 @@
             this.elements = this.layers ? createSizedArray(this.layers.length) : [];
             //this.layerElement = createNS('g');
             this.initElement(data, globalData, comp);
-            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : { _placeholder: true };
+            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : {
+                _placeholder: true
+            };
         }
 
         extendPrototype([SVGRenderer, ICompElement, SVGBaseElement], SVGCompElement);
+
         function SVGTextElement(data, globalData, comp) {
             this.textSpans = [];
             this.renderType = 'svg';
@@ -8376,8 +8681,10 @@
         };
 
         SVGTextElement.prototype.buildTextContents = function (textArray) {
-            var i = 0, len = textArray.length;
-            var textContents = [], currentTextContent = '';
+            var i = 0,
+                len = textArray.length;
+            var textContents = [],
+                currentTextContent = '';
             while (i < len) {
                 if (textArray[i] === String.fromCharCode(13) || textArray[i] === String.fromCharCode(3)) {
                     textContents.push(currentTextContent);
@@ -8411,7 +8718,8 @@
                 this.layerElement.setAttribute('class', fontData.fClass);
             } else {
                 this.layerElement.setAttribute('font-family', fontData.fFamily);
-                var fWeight = documentData.fWeight, fStyle = documentData.fStyle;
+                var fWeight = documentData.fWeight,
+                    fStyle = documentData.fStyle;
                 this.layerElement.setAttribute('font-style', fStyle);
                 this.layerElement.setAttribute('font-weight', fWeight);
             }
@@ -8423,8 +8731,11 @@
 
             var tSpan;
             var matrixHelper = this.mHelper;
-            var shapes, shapeStr = '', singleShape = this.data.singleShape;
-            var xPos = 0, yPos = 0, firstLine = true;
+            var shapes, shapeStr = '',
+                singleShape = this.data.singleShape;
+            var xPos = 0,
+                yPos = 0,
+                firstLine = true;
             var trackingOffset = documentData.tr / 1000 * documentData.finalSize;
             if (singleShape && !usesGlyphs && !documentData.sz) {
                 var tElement = this.textContainer;
@@ -8593,12 +8904,11 @@
 
         extendPrototype([BaseElement, TransformElement, SVGBaseElement, IShapeElement, HierarchyElement, FrameElement, RenderableDOMElement], SVGShapeElement);
 
-        SVGShapeElement.prototype.initSecondaryElement = function () {
-        };
+        SVGShapeElement.prototype.initSecondaryElement = function () {};
 
         SVGShapeElement.prototype.identityMatrix = new Matrix();
 
-        SVGShapeElement.prototype.buildExpressionInterface = function () { };
+        SVGShapeElement.prototype.buildExpressionInterface = function () {};
 
         SVGShapeElement.prototype.createContent = function () {
             this.searchShapes(this.shapesData, this.itemsData, this.prevViewData, this.layerElement, 0, [], true);
@@ -8609,7 +8919,8 @@
         This method searches for multiple shapes that affect a single element and one of them is animated
         */
         SVGShapeElement.prototype.filterUniqueShapes = function () {
-            var i, len = this.shapes.length, shape;
+            var i, len = this.shapes.length,
+                shape;
             var j, jLen = this.stylesList.length;
             var style, count = 0;
             var tempShapes = [];
@@ -8725,7 +9036,8 @@
         };
 
         SVGShapeElement.prototype.addToAnimatedContents = function (data, element) {
-            var i = 0, len = this.animatedContents.length;
+            var i = 0,
+                len = this.animatedContents.length;
             while (i < len) {
                 if (this.animatedContents[i].element === element) {
                     return;
@@ -8768,7 +9080,9 @@
             var ownTransformers = [].concat(transformers);
             var i, len = arr.length - 1;
             var j, jLen;
-            var ownStyles = [], ownModifiers = [], styleOb, currentTransform, modifier, processedPos;
+            var ownStyles = [],
+                ownModifiers = [],
+                styleOb, currentTransform, modifier, processedPos;
             for (i = len; i >= 0; i -= 1) {
                 processedPos = this.searchProcessedElement(arr[i]);
                 if (!processedPos) {
@@ -8920,6 +9234,7 @@
                 this.matrixFilter.setAttribute('values', (colorWhite[0] - colorBlack[0]) + ' 0 0 0 ' + colorBlack[0] + ' ' + (colorWhite[1] - colorBlack[1]) + ' 0 0 0 ' + colorBlack[1] + ' ' + (colorWhite[2] - colorBlack[2]) + ' 0 0 0 ' + colorBlack[2] + ' 0 0 0 ' + opacity + ' 0');
             }
         };
+
         function SVGFillFilter(filter, filterManager) {
             this.filterManager = filterManager;
             var feColorMatrix = createNS('feColorMatrix');
@@ -8936,6 +9251,7 @@
                 this.matrixFilter.setAttribute('values', '0 0 0 0 ' + color[0] + ' 0 0 0 0 ' + color[1] + ' 0 0 0 0 ' + color[2] + ' 0 0 0 ' + opacity + ' 0');
             }
         };
+
         function SVGGaussianBlurEffect(filter, filterManager) {
             // Outset the filter region by 100% on all sides to accommodate blur expansion.
             filter.setAttribute('x', '-100%');
@@ -8975,6 +9291,7 @@
                 this.feGaussianBlur.setAttribute('edgeMode', edgeMode);
             }
         }
+
         function SVGStrokeEffect(elem, filterManager) {
             this.initialized = false;
             this.filterManager = filterManager;
@@ -9000,7 +9317,10 @@
             for (i; i < len; i += 1) {
                 path = createNS('path');
                 groupPath.appendChild(path);
-                this.paths.push({ p: path, m: i });
+                this.paths.push({
+                    p: path,
+                    m: i
+                });
             }
             if (this.filterManager.effectElements[10].p.v === 3) {
                 var mask = createNS('mask');
@@ -9082,6 +9402,7 @@
                 }
             }
         };
+
         function SVGTritoneFilter(filter, filterManager) {
             this.filterManager = filterManager;
             var feColorMatrix = createNS('feColorMatrix');
@@ -9123,6 +9444,7 @@
                 //this.matrixFilter.setAttribute('values',(colorWhite[0]- colorBlack[0])+' 0 0 0 '+ colorBlack[0] +' '+ (colorWhite[1]- colorBlack[1]) +' 0 0 0 '+ colorBlack[1] +' '+ (colorWhite[2]- colorBlack[2]) +' 0 0 0 '+ colorBlack[2] +' 0 0 0 ' + opacity + ' 0');
             }
         };
+
         function SVGProLevelsFilter(filter, filterManager) {
             this.filterManager = filterManager;
             var effectElements = this.filterManager.effectElements;
@@ -9171,7 +9493,9 @@
             var perc;
             var min = Math.min(inputBlack, inputWhite);
             var max = Math.max(inputBlack, inputWhite);
-            var table = Array.call(null, { length: segments });
+            var table = Array.call(null, {
+                length: segments
+            });
             var colorValue;
             var pos = 0;
             var outputDelta = outputWhite - outputBlack;
@@ -9225,6 +9549,7 @@
 
             }
         };
+
         function SVGDropShadowEffect(filter, filterManager) {
             var filterSize = filterManager.container.globalData.renderConfig.filterSize
             filter.setAttribute('x', filterSize.x);
@@ -9320,7 +9645,8 @@
         }
 
         SVGMatte3Effect.prototype.findSymbol = function (mask) {
-            var i = 0, len = _svgMatteSymbols.length;
+            var i = 0,
+                len = _svgMatteSymbols.length;
             while (i < len) {
                 if (_svgMatteSymbols[i] === mask) {
                     return _svgMatteSymbols[i];
@@ -9336,7 +9662,8 @@
                 return;
             }
             var children = parentNode.children;
-            var i = 0, len = children.length;
+            var i = 0,
+                len = children.length;
             while (i < len) {
                 if (children[i] === mask.layerElement) {
                     break;
@@ -9382,7 +9709,8 @@
         SVGMatte3Effect.prototype.initialize = function () {
             var ind = this.filterManager.effectElements[0].p.v;
             var elements = this.elem.comp.elements;
-            var i = 0, len = elements.length;
+            var i = 0,
+                len = elements.length;
             while (i < len) {
                 if (elements[i] && elements[i].data.ind === ind) {
                     this.setElementAsMask(this.elem, elements[i]);
@@ -9397,6 +9725,7 @@
                 this.initialize();
             }
         };
+
         function SVGEffects(elem) {
             var i, len = elem.data.ef ? elem.data.ef.length : 0;
             var filId = createElementID();
@@ -9449,6 +9778,7 @@
                 this.filters[i].renderFrame(_isFirstFrame);
             }
         };
+
         function CVContextData() {
             this.saved = [];
             this.cArrPos = 0;
@@ -9479,17 +9809,17 @@
             this.cTr.reset();
             this.cO = 1;
         };
-        function CVBaseElement() {
-        }
+
+        function CVBaseElement() {}
 
         CVBaseElement.prototype = {
-            createElements: function () { },
-            initRendererElement: function () { },
+            createElements: function () {},
+            initRendererElement: function () {},
             createContainerElements: function () {
                 this.canvasContext = this.globalData.canvasContext;
                 this.renderableEffectsManager = new CVEffects(this);
             },
-            createContent: function () { },
+            createContent: function () {},
             setBlendMode: function () {
                 var globalData = this.globalData;
                 if (globalData.blendMode !== this.data.bm) {
@@ -9588,13 +9918,16 @@
         CVImageElement.prototype.destroy = function () {
             this.img = null;
         };
+
         function CVCompElement(data, globalData, comp) {
             this.completeLayers = false;
             this.layers = data.layers;
             this.pendingElements = [];
             this.elements = createSizedArray(this.layers.length);
             this.initElement(data, globalData, comp);
-            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : { _placeholder: true };
+            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : {
+                _placeholder: true
+            };
         }
 
         extendPrototype([CanvasRenderer, ICompElement, CVBaseElement], CVCompElement);
@@ -9632,7 +9965,8 @@
             this.element = element;
             this.masksProperties = this.data.masksProperties || [];
             this.viewData = createSizedArray(this.masksProperties.length);
-            var i, len = this.masksProperties.length, hasMasks = false;
+            var i, len = this.masksProperties.length,
+                hasMasks = false;
             for (i = 0; i < len; i++) {
                 if (this.masksProperties[i].mode !== 'n') {
                     hasMasks = true;
@@ -9684,6 +10018,7 @@
         CVMaskElement.prototype.destroy = function () {
             this.element = null;
         };
+
         function CVShapeElement(data, globalData, comp) {
             this.shapes = [];
             this.shapesData = data.shapes;
@@ -9700,7 +10035,10 @@
 
         CVShapeElement.prototype.initElement = RenderableDOMElement.prototype.initElement;
 
-        CVShapeElement.prototype.transformHelper = { opacity: 1, _opMdf: false };
+        CVShapeElement.prototype.transformHelper = {
+            opacity: 1,
+            _opMdf: false
+        };
 
         CVShapeElement.prototype.dashResetter = [];
 
@@ -9726,8 +10064,12 @@
             } else if (data.ty === 'gf' || data.ty === 'gs') {
                 elementData.s = PropertyFactory.getProp(this, data.s, 1, null, this);
                 elementData.e = PropertyFactory.getProp(this, data.e, 1, null, this);
-                elementData.h = PropertyFactory.getProp(this, data.h || { k: 0 }, 0, 0.01, this);
-                elementData.a = PropertyFactory.getProp(this, data.a || { k: 0 }, 0, degToRads, this);
+                elementData.h = PropertyFactory.getProp(this, data.h || {
+                    k: 0
+                }, 0, 0.01, this);
+                elementData.a = PropertyFactory.getProp(this, data.a || {
+                    k: 0
+                }, 0, degToRads, this);
                 elementData.g = new GradientProperty(this, data.g, this);
             }
             elementData.o = PropertyFactory.getProp(this, data.o, 0, 0.01, this);
@@ -9820,7 +10162,8 @@
         }
 
         CVShapeElement.prototype.closeStyles = function (styles) {
-            var i, len = styles.length, j, jLen;
+            var i, len = styles.length,
+                j, jLen;
             for (i = 0; i < len; i += 1) {
                 styles[i].closed = true;
             }
@@ -9829,7 +10172,9 @@
         CVShapeElement.prototype.searchShapes = function (arr, itemsData, prevViewData, shouldRender, transforms) {
             var i, len = arr.length - 1;
             var j, jLen;
-            var ownStyles = [], ownModifiers = [], processedPos, modifier, currentTransform;
+            var ownStyles = [],
+                ownModifiers = [],
+                processedPos, modifier, currentTransform;
             var ownTransforms = [].concat(transforms);
             for (i = len; i >= 0; i -= 1) {
                 processedPos = this.searchProcessedElement(arr[i]);
@@ -9921,7 +10266,9 @@
 
         CVShapeElement.prototype.drawLayer = function () {
             var i, len = this.stylesList.length;
-            var j, jLen, k, kLen, elems, nodes, renderer = this.globalData.renderer, ctx = this.globalData.canvasContext, type, currentStyle;
+            var j, jLen, k, kLen, elems, nodes, renderer = this.globalData.renderer,
+                ctx = this.globalData.canvasContext,
+                type, currentStyle;
             for (i = 0; i < len; i += 1) {
                 currentStyle = this.stylesList[i];
                 type = currentStyle.type;
@@ -10070,10 +10417,10 @@
             var styleElem = itemData.style;
 
             if (itemData.c._mdf || this._isFirstFrame) {
-                styleElem.co = 'rgb('
-                    + bm_floor(itemData.c.v[0]) + ','
-                    + bm_floor(itemData.c.v[1]) + ','
-                    + bm_floor(itemData.c.v[2]) + ')';
+                styleElem.co = 'rgb(' +
+                    bm_floor(itemData.c.v[0]) + ',' +
+                    bm_floor(itemData.c.v[1]) + ',' +
+                    bm_floor(itemData.c.v[2]) + ')';
             }
             if (itemData.o._mdf || groupTransform._opMdf || this._isFirstFrame) {
                 styleElem.coOp = itemData.o.v * groupTransform.opacity;
@@ -10085,7 +10432,8 @@
             if (!styleElem.grd || itemData.g._mdf || itemData.s._mdf || itemData.e._mdf || (styleData.t !== 1 && (itemData.h._mdf || itemData.a._mdf))) {
                 var ctx = this.globalData.canvasContext;
                 var grd;
-                var pt1 = itemData.s.v, pt2 = itemData.e.v;
+                var pt1 = itemData.s.v,
+                    pt2 = itemData.e.v;
                 if (styleData.t === 1) {
                     grd = ctx.createLinearGradient(pt1[0], pt1[1], pt2[0], pt2[1]);
                 } else {
@@ -10157,6 +10505,7 @@
             ctx.fillRect(0, 0, this.data.sw, this.data.sh);
             //
         };
+
         function CVTextElement(data, globalData, comp) {
             this.textSpans = [];
             this.yOffset = 0;
@@ -10208,7 +10557,9 @@
             //this.tHelper.font = this.values.fValue;
             var charData, shapeData, k, kLen, shapes, j, jLen, pathNodes, commands, pathArr, singleShape = this.data.singleShape;
             var trackingOffset = documentData.tr / 1000 * documentData.finalSize;
-            var xPos = 0, yPos = 0, firstLine = true;
+            var xPos = 0,
+                yPos = 0,
+                firstLine = true;
             var cnt = 0;
             for (i = 0; i < len; i += 1) {
                 charData = this.globalData.fontManager.getCharData(documentData.finalText[i], fontData.fStyle, this.globalData.fontManager.getFontByName(documentData.f).fFamily);
@@ -10248,7 +10599,9 @@
                 if (this.textSpans[cnt]) {
                     this.textSpans[cnt].elem = commands;
                 } else {
-                    this.textSpans[cnt] = { elem: commands };
+                    this.textSpans[cnt] = {
+                        elem: commands
+                    };
                 }
                 cnt += 1;
             }
@@ -10273,7 +10626,10 @@
 
             len = letters.length;
             var renderedLetter;
-            var lastFill = null, lastStroke = null, lastStrokeW = null, commands, pathArr;
+            var lastFill = null,
+                lastStroke = null,
+                lastStrokeW = null,
+                commands, pathArr;
             for (i = 0; i < len; i += 1) {
                 if (letters[i].n) {
                     continue;
@@ -10348,13 +10704,15 @@
                 }
             }
         };
+
         function CVEffects() {
 
         }
-        CVEffects.prototype.renderFrame = function () { };
-        function HBaseElement(data, globalData, comp) { }
+        CVEffects.prototype.renderFrame = function () {};
+
+        function HBaseElement(data, globalData, comp) {}
         HBaseElement.prototype = {
-            checkBlendMode: function () { },
+            checkBlendMode: function () {},
             initRendererElement: function () {
                 this.baseElement = createTag(this.data.tg || 'div');
                 if (this.data.hasMask) {
@@ -10418,13 +10776,13 @@
             createRenderableComponents: function () {
                 this.maskManager = new MaskElement(this.data, this, this.globalData);
             },
-            addEffects: function () {
-            },
-            setMatte: function () { }
+            addEffects: function () {},
+            setMatte: function () {}
         };
         HBaseElement.prototype.getBaseElement = SVGBaseElement.prototype.getBaseElement;
         HBaseElement.prototype.destroyBaseElement = HBaseElement.prototype.destroy;
         HBaseElement.prototype.buildElementParenting = HybridRenderer.prototype.buildElementParenting;
+
         function HSolidElement(data, globalData, comp) {
             this.initElement(data, globalData, comp);
         }
@@ -10455,7 +10813,9 @@
             this.pendingElements = [];
             this.elements = this.layers ? createSizedArray(this.layers.length) : [];
             this.initElement(data, globalData, comp);
-            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : { _placeholder: true };
+            this.tm = data.tm ? PropertyFactory.getProp(this, data.tm, 0, globalData.frameRate, this) : {
+                _placeholder: true
+            };
         }
 
         extendPrototype([HybridRenderer, ICompElement, HBaseElement], HCompElement);
@@ -10550,7 +10910,8 @@
         HShapeElement.prototype.calculateShapeBoundingBox = function (item, boundingBox) {
             var shape = item.sh.v;
             var transformers = item.transformers;
-            var i, len = shape._length, vPoint, oPoint, nextIPoint, nextVPoint, bounds;
+            var i, len = shape._length,
+                vPoint, oPoint, nextIPoint, nextVPoint, bounds;
             if (len <= 1) {
                 return;
             }
@@ -10597,7 +10958,10 @@
 
         HShapeElement.prototype.getBoundsOfCurve = function (p0, p1, p2, p3) {
 
-            var bounds = [[p0[0], p3[0]], [p0[1], p3[1]]];
+            var bounds = [
+                [p0[0], p3[0]],
+                [p0[1], p3[1]]
+            ];
 
             for (var a, b, c, t, b2ac, t1, t2, i = 0; i < 2; ++i) {
 
@@ -10644,14 +11008,15 @@
         };
 
         HShapeElement.prototype.calculateF = function (t, p0, p1, p2, p3, i) {
-            return bm_pow(1 - t, 3) * p0[i]
-                + 3 * bm_pow(1 - t, 2) * t * p1[i]
-                + 3 * (1 - t) * bm_pow(t, 2) * p2[i]
-                + bm_pow(t, 3) * p3[i];
+            return bm_pow(1 - t, 3) * p0[i] +
+                3 * bm_pow(1 - t, 2) * t * p1[i] +
+                3 * (1 - t) * bm_pow(t, 2) * p2[i] +
+                bm_pow(t, 3) * p3[i];
         }
 
         HShapeElement.prototype.calculateBoundingBox = function (itemsData, boundingBox) {
-            var i, len = itemsData.length, path;
+            var i, len = itemsData.length,
+                path;
             for (i = 0; i < len; i += 1) {
                 if (itemsData[i] && itemsData[i].sh) {
                     this.calculateShapeBoundingBox(itemsData[i], boundingBox)
@@ -10662,10 +11027,10 @@
         }
 
         HShapeElement.prototype.currentBoxContains = function (box) {
-            return this.currentBBox.x <= box.x
-                && this.currentBBox.y <= box.y
-                && this.currentBBox.width + this.currentBBox.x >= box.x + box.width
-                && this.currentBBox.height + this.currentBBox.y >= box.y + box.height
+            return this.currentBBox.x <= box.x &&
+                this.currentBBox.y <= box.y &&
+                this.currentBBox.width + this.currentBBox.x >= box.x + box.width &&
+                this.currentBBox.height + this.currentBBox.y >= box.y + box.height
         }
 
         HShapeElement.prototype.renderInnerContent = function () {
@@ -10708,6 +11073,7 @@
             }
 
         };
+
         function HTextElement(data, globalData, comp) {
             this.textSpans = [];
             this.textPaths = [];
@@ -10761,7 +11127,8 @@
                     this.innerElem.className = fontData.fClass;
                 } else {
                     innerElemStyle.fontFamily = fontData.fFamily;
-                    var fWeight = documentData.fWeight, fStyle = documentData.fStyle;
+                    var fWeight = documentData.fWeight,
+                        fStyle = documentData.fStyle;
                     innerElemStyle.fontStyle = fStyle;
                     innerElemStyle.fontWeight = fWeight;
                 }
@@ -10957,6 +11324,7 @@
                 }
             }
         };
+
         function HImageElement(data, globalData, comp) {
             this.assetData = globalData.getAssetData(data.refId);
             this.initElement(data, globalData, comp);
@@ -10985,6 +11353,7 @@
                 this.baseElement.setAttribute('id', this.data.ln);
             }
         };
+
         function HCameraElement(data, globalData, comp) {
             this.initFrame();
             this.initBaseData(data, globalData, comp);
@@ -11025,7 +11394,8 @@
         extendPrototype([BaseElement, FrameElement, HierarchyElement], HCameraElement);
 
         HCameraElement.prototype.setup = function () {
-            var i, len = this.comp.threeDElements.length, comp;
+            var i, len = this.comp.threeDElements.length,
+                comp;
             for (i = 0; i < len; i += 1) {
                 //[perspectiveElem,container]
                 comp = this.comp.threeDElements[i];
@@ -11037,11 +11407,9 @@
             }
         };
 
-        HCameraElement.prototype.createElements = function () {
-        };
+        HCameraElement.prototype.createElements = function () {};
 
-        HCameraElement.prototype.hide = function () {
-        };
+        HCameraElement.prototype.hide = function () {};
 
         HCameraElement.prototype.renderFrame = function () {
             var _mdf = this._isFirstFrame;
@@ -11121,12 +11489,13 @@
             this.prepareProperties(num, true);
         };
 
-        HCameraElement.prototype.destroy = function () {
+        HCameraElement.prototype.destroy = function () {};
+        HCameraElement.prototype.getBaseElement = function () {
+            return null;
         };
-        HCameraElement.prototype.getBaseElement = function () { return null; };
-        function HEffects() {
-        }
-        HEffects.prototype.renderFrame = function () { };
+
+        function HEffects() {}
+        HEffects.prototype.renderFrame = function () {};
         var animationManager = (function () {
             var moduleOb = {};
             var registeredAnimations = [];
@@ -11191,7 +11560,10 @@
                 animItem.addEventListener('destroy', removeElement);
                 animItem.addEventListener('_active', addPlayingCount);
                 animItem.addEventListener('_idle', subtractPlayingCount);
-                registeredAnimations.push({ elem: element, animation: animItem });
+                registeredAnimations.push({
+                    elem: element,
+                    animation: animItem
+                });
                 len += 1;
             }
 
@@ -11223,6 +11595,7 @@
                     registeredAnimations[i].animation.play(animation);
                 }
             }
+
             function resume(nowTime) {
                 var elapsedTime = nowTime - initTime;
                 var i;
@@ -11402,8 +11775,7 @@
             this.renderer.setProjectInterface(this.projectInterface);
             this.animType = animType;
 
-            if (params.loop === '' || params.loop === null) {
-            } else if (params.loop === false) {
+            if (params.loop === '' || params.loop === null) {} else if (params.loop === false) {
                 this.loop = false;
             } else if (params.loop === true) {
                 this.loop = true;
@@ -11445,8 +11817,7 @@
             params.animType = wrapperAttributes.getNamedItem('data-anim-type') ? wrapperAttributes.getNamedItem('data-anim-type').value : wrapperAttributes.getNamedItem('data-bm-type') ? wrapperAttributes.getNamedItem('data-bm-type').value : wrapperAttributes.getNamedItem('bm-type') ? wrapperAttributes.getNamedItem('bm-type').value : wrapperAttributes.getNamedItem('data-bm-renderer') ? wrapperAttributes.getNamedItem('data-bm-renderer').value : wrapperAttributes.getNamedItem('bm-renderer') ? wrapperAttributes.getNamedItem('bm-renderer').value : 'canvas';
 
             var loop = wrapperAttributes.getNamedItem('data-anim-loop') ? wrapperAttributes.getNamedItem('data-anim-loop').value : wrapperAttributes.getNamedItem('data-bm-loop') ? wrapperAttributes.getNamedItem('data-bm-loop').value : wrapperAttributes.getNamedItem('bm-loop') ? wrapperAttributes.getNamedItem('bm-loop').value : '';
-            if (loop === '') {
-            } else if (loop === 'false') {
+            if (loop === '') {} else if (loop === 'false') {
                 params.loop = false;
             } else if (loop === 'true') {
                 params.loop = true;
@@ -11873,7 +12244,8 @@
         };
 
         AnimationItem.prototype.getAssetData = function (id) {
-            var i = 0, len = this.assets.length;
+            var i = 0,
+                len = this.assets.length;
             while (i < len) {
                 if (id == this.assets[i].id) {
                     return this.assets[i];
@@ -12056,7 +12428,9 @@
                 }
                 if ($bm_isInstanceOfArray(a) && $bm_isInstanceOfArray(b)) {
 
-                    var i = 0, lenA = a.length, lenB = b.length;
+                    var i = 0,
+                        lenA = a.length,
+                        lenB = b.length;
                     var retArr = [];
                     while (i < lenA || i < lenB) {
                         if ((typeof a[i] === 'number' || a[i] instanceof Number) && (typeof b[i] === 'number' || b[i] instanceof Number)) {
@@ -12095,7 +12469,9 @@
                     return b;
                 }
                 if ($bm_isInstanceOfArray(a) && $bm_isInstanceOfArray(b)) {
-                    var i = 0, lenA = a.length, lenB = b.length;
+                    var i = 0,
+                        lenA = a.length,
+                        lenB = b.length;
                     var retArr = [];
                     while (i < lenA || i < lenB) {
                         if ((typeof a[i] === 'number' || a[i] instanceof Number) && (typeof b[i] === 'number' || b[i] instanceof Number)) {
@@ -12164,6 +12540,7 @@
                 }
                 return 0;
             }
+
             function mod(a, b) {
                 if (typeof a === 'string') {
                     a = parseInt(a);
@@ -12221,8 +12598,11 @@
             }
 
             function rgbToHsl(val) {
-                var r = val[0]; var g = val[1]; var b = val[2];
-                var max = Math.max(r, g, b), min = Math.min(r, g, b);
+                var r = val[0];
+                var g = val[1];
+                var b = val[2];
+                var max = Math.max(r, g, b),
+                    min = Math.min(r, g, b);
                 var h, s, l = (max + min) / 2;
 
                 if (max == min) {
@@ -12231,9 +12611,15 @@
                     var d = max - min;
                     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
                     switch (max) {
-                        case r: h = (g - b) / d + (g < b ? 6 : 0); break;
-                        case g: h = (b - r) / d + 2; break;
-                        case b: h = (r - g) / d + 4; break;
+                        case r:
+                            h = (g - b) / d + (g < b ? 6 : 0);
+                            break;
+                        case g:
+                            h = (b - r) / d + 2;
+                            break;
+                        case b:
+                            h = (r - g) / d + 4;
+                            break;
                     }
                     h /= 6;
                 }
@@ -12299,6 +12685,7 @@
                 }
                 return arr;
             }
+
             function random(min, max) {
                 if (max === undefined) {
                     if (min === undefined) {
@@ -12332,7 +12719,8 @@
                 var i, len = points.length;
                 var path = shape_pool.newElement();
                 path.setPathData(!!closed, len);
-                var arrPlaceholder = [0, 0], inVertexPoint, outVertexPoint;
+                var arrPlaceholder = [0, 0],
+                    inVertexPoint, outVertexPoint;
                 for (i = 0; i < len; i += 1) {
                     inVertexPoint = (inTangents && inTangents[i]) ? inTangents[i] : arrPlaceholder;
                     outVertexPoint = (outTangents && outTangents[i]) ? outTangents[i] : arrPlaceholder;
@@ -12481,7 +12869,8 @@
                 }
 
                 function nearestKey(time) {
-                    var i, len = data.k.length, index, keyTime;
+                    var i, len = data.k.length,
+                        index, keyTime;
                     if (!data.k.length || typeof (data.k[0]) === 'number') {
                         index = 0;
                         keyTime = 0;
@@ -12597,6 +12986,7 @@
                 var parent;
                 var randSeed = Math.floor(Math.random() * 1000000);
                 var globalData = elem.globalData;
+
                 function executeExpression(_value) {
                     // globalData.pushExpression();
                     value = _value;
@@ -12886,7 +13276,8 @@
                 var initFrame = currentTime - width;
                 var endFrame = currentTime + width;
                 var sampleFrequency = samples > 1 ? (endFrame - initFrame) / (samples - 1) : 1;
-                var i = 0, j = 0;
+                var i = 0,
+                    j = 0;
                 var value;
                 if (this.pv.length) {
                     value = createTypedArray('float32', this.pv.length);
@@ -13006,7 +13397,7 @@
             var ShapePropertyConstructorFunction = ShapePropertyFactory.getConstructorFunction();
             var KeyframedShapePropertyConstructorFunction = ShapePropertyFactory.getKeyframedConstructorFunction();
 
-            function ShapeExpressions() { }
+            function ShapeExpressions() {}
             ShapeExpressions.prototype = {
                 vertices: function (prop, time) {
                     if (this.k) {
@@ -13054,9 +13445,12 @@
                     var segmentsLength = this._segmentsLength;
                     var lengths = segmentsLength.lengths;
                     var lengthPos = segmentsLength.totalLength * perc;
-                    var i = 0, len = lengths.length;
-                    var j = 0, jLen;
-                    var accumulatedLength = 0, pt;
+                    var i = 0,
+                        len = lengths.length;
+                    var j = 0,
+                        jLen;
+                    var accumulatedLength = 0,
+                        pt;
                     while (i < len) {
                         if (accumulatedLength + lengths[i].addedLength > lengthPos) {
                             var initIndex = i;
@@ -13187,7 +13581,8 @@
             function contentsInterfaceFactory(shape, view, propertyGroup) {
                 var interfaces;
                 var interfaceFunction = function _interfaceFunction(value) {
-                    var i = 0, len = interfaces.length;
+                    var i = 0,
+                        len = interfaces.length;
                     while (i < len) {
                         if (interfaces[i]._name === value || interfaces[i].mn === value || interfaces[i].propertyIndex === value || interfaces[i].ix === value || interfaces[i].ind === value) {
                             return interfaces[i];
@@ -13220,9 +13615,9 @@
                         case 'Contents':
                         case 2:
                             return interfaceFunction.content;
-                        //Not necessary for now. Keeping them here in case a new case appears
-                        //case 'ADBE Vector Transform Group':
-                        //case 3:
+                            //Not necessary for now. Keeping them here in case a new case appears
+                            //case 'ADBE Vector Transform Group':
+                            //case 3:
                         default:
                             return interfaceFunction.transform;
                     }
@@ -13266,8 +13661,12 @@
                     'opacity': {
                         get: ExpressionPropertyInterface(view.o)
                     },
-                    '_name': { value: shape.nm },
-                    'mn': { value: shape.mn }
+                    '_name': {
+                        value: shape.nm
+                    },
+                    'mn': {
+                        value: shape.mn
+                    }
                 });
 
                 view.c.setGroupProperty(propertyGroup);
@@ -13283,6 +13682,7 @@
                         return propertyGroup(val - 1);
                     }
                 }
+
                 function _dashPropertyGroup(val) {
                     if (val === 1) {
                         return dashOb;
@@ -13290,6 +13690,7 @@
                         return _propertyGroup(val - 1);
                     }
                 }
+
                 function addPropertyToDashOb(i) {
                     Object.defineProperty(dashOb, shape.d[i].nm, {
                         get: ExpressionPropertyInterface(view.d.dataProps[i].p)
@@ -13326,8 +13727,12 @@
                             return dashOb;
                         }
                     },
-                    '_name': { value: shape.nm },
-                    'mn': { value: shape.mn }
+                    '_name': {
+                        value: shape.nm
+                    },
+                    'mn': {
+                        value: shape.mn
+                    }
                 });
 
                 view.c.setGroupProperty(_propertyGroup);
@@ -13374,7 +13779,9 @@
                     'offset': {
                         get: ExpressionPropertyInterface(view.o)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13445,7 +13852,9 @@
                     'skewAxis': {
                         get: ExpressionPropertyInterface(view.transform.mProps.sa)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.ty = 'tr';
                 interfaceFunction.mn = shape.mn;
@@ -13465,6 +13874,7 @@
                 var prop = view.sh.ty === 'tm' ? view.sh.prop : view.sh;
                 prop.s.setGroupProperty(_propertyGroup);
                 prop.p.setGroupProperty(_propertyGroup);
+
                 function interfaceFunction(value) {
                     if (shape.p.ix === value) {
                         return interfaceFunction.position;
@@ -13481,7 +13891,9 @@
                     'position': {
                         get: ExpressionPropertyInterface(prop.p)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13554,7 +13966,9 @@
                     'innerRoundness': {
                         get: ExpressionPropertyInterface(prop.is)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13596,7 +14010,9 @@
                     'size': {
                         get: ExpressionPropertyInterface(prop.s)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13624,7 +14040,9 @@
                     'radius': {
                         get: ExpressionPropertyInterface(prop.rd)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13658,7 +14076,9 @@
                     'offset': {
                         get: ExpressionPropertyInterface(prop.o)
                     },
-                    '_name': { value: shape.nm }
+                    '_name': {
+                        value: shape.nm
+                    }
                 });
                 interfaceFunction.mn = shape.mn;
                 return interfaceFunction;
@@ -13666,6 +14086,7 @@
 
             function pathInterfaceFactory(shape, view, propertyGroup) {
                 var prop = view.sh;
+
                 function _propertyGroup(val) {
                     if (val == 1) {
                         return interfaceFunction;
@@ -13697,21 +14118,31 @@
                             return prop;
                         }
                     },
-                    '_name': { value: shape.nm },
-                    'ix': { value: shape.ix },
-                    'propertyIndex': { value: shape.ix },
-                    'mn': { value: shape.mn }
+                    '_name': {
+                        value: shape.nm
+                    },
+                    'ix': {
+                        value: shape.ix
+                    },
+                    'propertyIndex': {
+                        value: shape.ix
+                    },
+                    'mn': {
+                        value: shape.mn
+                    }
                 });
                 return interfaceFunction;
             }
 
             return function (shapes, view, propertyGroup) {
                 var interfaces;
+
                 function _interfaceFunction(value) {
                     if (typeof value === 'number') {
                         return interfaces[value - 1];
                     } else {
-                        var i = 0, len = interfaces.length;
+                        var i = 0,
+                            len = interfaces.length;
                         while (i < len) {
                             if (interfaces[i]._name === value) {
                                 return interfaces[i];
@@ -13730,8 +14161,8 @@
         var TextExpressionInterface = (function () {
             return function (elem) {
                 var _prevValue, _sourceText;
-                function _thisLayerFunction() {
-                }
+
+                function _thisLayerFunction() {}
                 Object.defineProperty(_thisLayerFunction, "sourceText", {
                     get: function () {
                         elem.textProperty.getValue()
@@ -13770,6 +14201,7 @@
                 }
                 return toWorldMat.applyToPointArray(arr[0], arr[1], arr[2] || 0);
             }
+
             function fromWorld(arr, time) {
                 var toWorldMat = new Matrix();
                 toWorldMat.reset();
@@ -13791,6 +14223,7 @@
                 }
                 return toWorldMat.inversePoint(arr);
             }
+
             function fromComp(arr) {
                 var toWorldMat = new Matrix();
                 toWorldMat.reset();
@@ -13817,6 +14250,7 @@
                 function _registerMaskInterface(maskManager) {
                     _thisLayerFunction.mask = new MaskManagerInterface(maskManager, elem);
                 }
+
                 function _registerEffectsInterface(effects) {
                     _thisLayerFunction.effect = effects;
                 }
@@ -13896,7 +14330,8 @@
         var CompExpressionInterface = (function () {
             return function (comp) {
                 function _thisLayerFunction(name) {
-                    var i = 0, len = comp.layers.length;
+                    var i = 0,
+                        len = comp.layers.length;
                     while (i < len) {
                         if (comp.layers[i].nm === name || comp.layers[i].ind === name) {
                             return comp.elements[i].layerInterface;
@@ -13906,7 +14341,9 @@
                     return null;
                     //return {active:false};
                 }
-                Object.defineProperty(_thisLayerFunction, "_name", { value: comp.data.nm });
+                Object.defineProperty(_thisLayerFunction, "_name", {
+                    value: comp.data.nm
+                });
                 _thisLayerFunction.layer = _thisLayerFunction;
                 _thisLayerFunction.pixelAspect = 1;
                 _thisLayerFunction.height = comp.data.h || comp.globalData.compSize.h;
@@ -14036,7 +14473,8 @@
 
             return function () {
                 function _thisProjectFunction(name) {
-                    var i = 0, len = this.compositions.length;
+                    var i = 0,
+                        len = this.compositions.length;
                     while (i < len) {
                         if (this.compositions[i].data && this.compositions[i].data.nm === name) {
                             if (this.compositions[i].prepareFrame && this.compositions[i].data.xt) {
@@ -14074,7 +14512,9 @@
                     }
 
                     return function (name) {
-                        var effects = elem.data.ef || [], i = 0, len = effects.length;
+                        var effects = elem.data.ef || [],
+                            i = 0,
+                            len = effects.length;
                         while (i < len) {
                             if (name === effects[i].nm || name === effects[i].mn || name === effects[i].ix) {
                                 return effectElements[i];
@@ -14105,7 +14545,9 @@
                 }
 
                 var groupInterface = function (name) {
-                    var effects = data.ef, i = 0, len = effects.length;
+                    var effects = data.ef,
+                        i = 0,
+                        len = effects.length;
                     while (i < len) {
                         if (name === effects[i].nm || name === effects[i].mn || name === effects[i].ix) {
                             if (effects[i].ty === 5) {
@@ -14139,6 +14581,7 @@
 
             function createValueInterface(element, type, elem, propertyGroup) {
                 var expressionProperty = ExpressionPropertyInterface(element.p);
+
                 function interfaceFunction() {
                     if (type === 10) {
                         return elem.comp.compInterface(element.p.v);
@@ -14204,8 +14647,16 @@
 
         var ExpressionPropertyInterface = (function () {
 
-            var defaultUnidimensionalValue = { pv: 0, v: 0, mult: 1 }
-            var defaultMultidimensionalValue = { pv: [0, 0, 0], v: [0, 0, 0], mult: 1 }
+            var defaultUnidimensionalValue = {
+                pv: 0,
+                v: 0,
+                mult: 1
+            }
+            var defaultMultidimensionalValue = {
+                pv: [0, 0, 0],
+                v: [0, 0, 0],
+                mult: 1
+            }
 
             function completeProperty(expressionValue, property, type) {
                 Object.defineProperty(expressionValue, 'velocity', {
@@ -14342,31 +14793,41 @@
                 }
             };
         }());
+
         function SliderEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 0, 0, container);
         }
+
         function AngleEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 0, 0, container);
         }
+
         function ColorEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 1, 0, container);
         }
+
         function PointEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 1, 0, container);
         }
+
         function LayerIndexEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 0, 0, container);
         }
+
         function MaskIndexEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 0, 0, container);
         }
+
         function CheckboxEffect(data, elem, container) {
             this.p = PropertyFactory.getProp(elem, data.v, 0, 0, container);
         }
+
         function NoValueEffect() {
             this.p = {};
         }
-        function EffectsManager() { }
+
+        function EffectsManager() {}
+
         function EffectsManager(data, element) {
             var effects = data.ef || [];
             this.effectElements = [];
@@ -14420,7 +14881,7 @@
                     case 5:
                         eff = new EffectsManager(effects[i], element, this);
                         break;
-                    //case 6:
+                        //case 6:
                     default:
                         eff = new NoValueEffect(effects[i], element, this);
                         break;
@@ -14734,6 +15195,14 @@
 
             var percents = self.getPercents();
 
+            var elemSettings = $el.closest(".elementor-element").data("settings");
+
+            if (elemSettings && "fixed" === elemSettings._position) {
+
+                percents = self.getLottieViewportHeightPercentage();
+
+            }
+
             if (elementSettings.effects.includes('animate')) {
                 self.animate(percents, elementSettings.animate);
             }
@@ -14741,6 +15210,20 @@
             if (elementSettings.effects.includes('translateY')) {
                 self.transform('translateY', percents, elementSettings.vscroll);
             }
+
+        };
+
+        self.getLottieViewportHeightPercentage = function () {
+
+            var offsetObj = elementSettings.animate.range;
+            var limitPageHeight = window.innerHeight;
+            var offsetStart = offsetObj.start || 0,
+                offsetEnd = offsetObj.end || 0,
+                initialPageHeight = limitPageHeight || document.documentElement.scrollHeight - document.documentElement.clientHeight,
+                heightOffset = initialPageHeight * offsetStart / 100,
+                pageRange = initialPageHeight + heightOffset + initialPageHeight * offsetEnd / 100,
+                scrollPos = document.documentElement.scrollTop + document.body.scrollTop + heightOffset;
+            return scrollPos / pageRange * 100;
 
         };
 
@@ -14877,15 +15360,15 @@
         if (isEditor) {
 
             var freeHandSettings = {
-                repeater: 'premium_lottie_repeater',
-                item: '.premium-lottie-layer',
-                hor: 'premium_lottie_hor',
-                ver: 'premium_lottie_ver',
-                width: 'premium_lottie_size',
-                tab: 'section_premium_lottie',
-                offset: 0,
-                widgets: ["drag"]
-            },
+                    repeater: 'premium_lottie_repeater',
+                    item: '.premium-lottie-layer',
+                    hor: 'premium_lottie_hor',
+                    ver: 'premium_lottie_ver',
+                    width: 'premium_lottie_size',
+                    tab: 'section_premium_lottie',
+                    offset: 0,
+                    widgets: ["drag"]
+                },
                 instance = null;
 
             instance = new premiumEditorBehavior(target, freeHandSettings);
@@ -15026,28 +15509,36 @@
                             effects.push("animate");
                         }
 
-
                         var parallaxSettings = {
-                            elType: 'SECTION',
-                            vscroll: {
-                                speed: layer.premium_lottie_parallax_speed.size,
-                                direction: layer.premium_lottie_parallax_direction,
-                                range: {
-                                    start: layer.premium_lottie_parallax_view.sizes.start,
-                                    end: layer.premium_lottie_parallax_view.sizes.end
-                                }
+                                elType: 'SECTION',
+                                effects: effects
                             },
-                            animate: {
+                            parallaxInstance = null;
+
+
+                        if (effects.includes('animate')) {
+                            parallaxSettings.animate = {
                                 speed: layer.premium_lottie_animate_speed.size,
                                 range: {
                                     start: layer.premium_lottie_animate_view.sizes.start,
                                     end: layer.premium_lottie_animate_view.sizes.end
                                 }
-                            },
-                            effects: effects
-                        },
-                            parallaxInstance = null;
+                            };
+                        }
 
+
+                        if (effects.includes('translateY')) {
+
+                            parallaxSettings.vscroll = {
+                                speed: layer.premium_lottie_parallax_speed.size || 4,
+                                direction: layer.premium_lottie_parallax_direction,
+                                range: {
+                                    start: layer.premium_lottie_parallax_view.sizes.start,
+                                    end: layer.premium_lottie_parallax_view.sizes.end
+                                }
+                            };
+
+                        }
 
                         parallaxInstance = new premiumEffects($layer[0], parallaxSettings, animItem);
 

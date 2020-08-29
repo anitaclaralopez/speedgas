@@ -121,7 +121,7 @@ class Premium_Carousel extends Widget_Base {
             [
                 'label'         => __('Templates', 'premium-addons-for-elementor'),
                 'type'          => Controls_Manager::REPEATER,
-                'fields'        => array_values( $repeater->get_controls() ),
+                'fields'        => $repeater->get_controls(),
                 'condition'     => [
                     'premium_carousel_content_type' => 'repeater'
                 ],
@@ -449,7 +449,15 @@ class Premium_Carousel extends Widget_Base {
 		$this->add_control('doc_2',
             [
                 'type'            => Controls_Manager::RAW_HTML,
-                'raw'             => sprintf( __( '%1$s I\'m not able to see Font Awesome icons in the widget » %2$s', 'premium-addons-pro' ), '<a href="https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'raw'             => sprintf( __( '%1$s I\'m not able to see Font Awesome icons in the widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/why-im-not-able-to-see-elementor-font-awesome-5-icons-in-premium-add-ons/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
+                'content_classes' => 'editor-pa-doc',
+            ]
+        );
+
+        $this->add_control('doc_3',
+            [
+                'type'            => Controls_Manager::RAW_HTML,
+                'raw'             => sprintf( __( '%1$s How to add entrance animations to the elements inside Premium Carousel Widget » %2$s', 'premium-addons-for-elementor' ), '<a href="https://premiumaddons.com/docs/how-to-add-entrance-animations-to-elementor-elements-in-premium-carousel-widget/?utm_source=papro-dashboard&utm_medium=papro-editor&utm_campaign=papro-plugin" target="_blank" rel="noopener">', '</a>' ),
                 'content_classes' => 'editor-pa-doc',
             ]
         );
@@ -855,7 +863,21 @@ class Premium_Carousel extends Widget_Base {
 	 */
 	protected function render() {
         
-		$settings = $this->get_settings();
+        $settings = $this->get_settings();
+        
+        $templates = array();
+        
+        if( 'select' === $settings['premium_carousel_content_type'] ){
+            $templates = $settings['premium_carousel_slider_content'];
+        } else {
+            foreach( $settings['premium_carousel_templates_repeater'] as $template ){
+                array_push($templates, $template['premium_carousel_repeater_item']);
+            }
+        }
+
+        if( empty( $templates ) ) {
+            return;
+        }
         
         $vertical = $settings['premium_carousel_slider_type'] == 'vertical' ? true : false;
 		
@@ -1058,16 +1080,6 @@ class Premium_Carousel extends Widget_Base {
             'tabletBreak'   => $tablet_breakpoint,
             'mobileBreak'   => $mobile_breakpoint
         ];
-        
-        $templates = array();
-        
-        if( 'select' === $settings['premium_carousel_content_type'] ){
-            $templates = $settings['premium_carousel_slider_content'];
-        } else {
-            foreach( $settings['premium_carousel_templates_repeater'] as $template ){
-                array_push($templates, $template['premium_carousel_repeater_item']);
-            }
-        }
         
         $this->add_render_attribute( 'carousel', 'id', 'premium-carousel-wrapper-' . esc_attr( $this->get_id() ) );
         

@@ -292,7 +292,7 @@
             });
         }
 
-        $galleryElement.imagesLoaded(function () { }).done(function () {
+        $galleryElement.imagesLoaded(function () {}).done(function () {
             $galleryElement.isotope({
                 itemSelector: ".premium-gallery-item",
                 percentPosition: true,
@@ -329,8 +329,8 @@
                         "premium-gallery-item-hidden");
                     var itemsToHide = instance.filteredItems.slice(imagesToShow, instance
                         .filteredItems.length).map(function (item) {
-                            return item.element;
-                        });
+                        return item.element;
+                    });
                     $(itemsToHide).addClass("premium-gallery-item-hidden");
                     $galleryElement.isotope("layout");
                     if (0 == itemsToHide) {
@@ -352,12 +352,12 @@
                         beforeSend: function () {
                             $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").removeClass(
-                                    "premium-gallery-item-hidden");
+                                "premium-gallery-item-hidden");
                         },
                         success: function () {
                             $galleryElement.parent().find(
                                 ".premium-gallery-load-more div").addClass(
-                                    "premium-gallery-item-hidden");
+                                "premium-gallery-item-hidden");
                         }
                     });
                 });
@@ -694,19 +694,19 @@
             slidesToScroll: settings.slidesToScroll,
             slidesToShow: settings.slidesToShow,
             responsive: [{
-                breakpoint: settings.tabletBreak,
-                settings: {
-                    slidesToShow: settings.slidesTab,
-                    slidesToScroll: settings.slidesTab
+                    breakpoint: settings.tabletBreak,
+                    settings: {
+                        slidesToShow: settings.slidesTab,
+                        slidesToScroll: settings.slidesTab
+                    }
+                },
+                {
+                    breakpoint: settings.mobileBreak,
+                    settings: {
+                        slidesToShow: settings.slidesMob,
+                        slidesToScroll: settings.slidesMob
+                    }
                 }
-            },
-            {
-                breakpoint: settings.mobileBreak,
-                settings: {
-                    slidesToShow: settings.slidesMob,
-                    slidesToScroll: settings.slidesMob
-                }
-            }
             ],
             useTransform: true,
             fade: settings.fade,
@@ -782,9 +782,6 @@
                 centerMode = slick.options.centerMode,
                 slideToAnimate = currentSlide + slidesToShow - 1;
 
-            //Reset Aniamtions for the other slides
-            resetAnimations();
-
             //Trigger Aniamtions for the current slide
             triggerAnimation();
 
@@ -812,13 +809,16 @@
 
         $carouselElem.on("beforeChange", function (event, slick, currentSlide) {
 
+            //Reset Aniamtions for the other slides
+            resetAnimations();
+
             var $inViewPort = $(this).find("[data-slick-index='" + currentSlide + "']");
 
             if ("null" != settings.animation) {
                 $inViewPort.siblings().find(
                     "p, h1, h2, h3, h4, h5, h6, span, a, img, i, button").removeClass(
-                        settings.animation).addClass(
-                            "premium-carousel-content-hidden");
+                    settings.animation).addClass(
+                    "premium-carousel-content-hidden");
             }
         });
 
@@ -977,7 +977,7 @@
                     '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>'
                 ), (nextArrow =
                     '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>'
-                    );
+                );
             } else {
                 prevArrow = prevArrow = "";
             }
@@ -987,19 +987,19 @@
                 slidesToShow: cols,
                 slidesToScroll: cols,
                 responsive: [{
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: colsTablet,
-                        slidesToScroll: 1
+                        breakpoint: 1025,
+                        settings: {
+                            slidesToShow: colsTablet,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: colsMobile,
+                            slidesToScroll: 1
+                        }
                     }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: colsMobile,
-                        slidesToScroll: 1
-                    }
-                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
@@ -1128,27 +1128,27 @@
                 rtl = $persons.data("rtl"),
                 colsNumber = $persons.data("col"),
                 prevArrow =
-                    '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
+                '<a type="button" data-role="none" class="carousel-arrow carousel-prev" aria-label="Next" role="button" style=""><i class="fas fa-angle-left" aria-hidden="true"></i></a>',
                 nextArrow =
-                    '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
+                '<a type="button" data-role="none" class="carousel-arrow carousel-next" aria-label="Next" role="button" style=""><i class="fas fa-angle-right" aria-hidden="true"></i></a>';
             $persons.slick({
                 infinite: true,
                 slidesToShow: colsNumber,
                 slidesToScroll: colsNumber,
                 responsive: [{
-                    breakpoint: 1025,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
+                        breakpoint: 1025,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
+                    },
+                    {
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1,
+                            slidesToScroll: 1
+                        }
                     }
-                },
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
                 ],
                 autoplay: autoPlay,
                 autoplaySpeed: speed,
@@ -1166,14 +1166,14 @@
         var heights = new Array();
 
         $persons.find(".premium-person-container").each(function (index, person) {
-            $(person).imagesLoaded(function () { }).done(function () {
+            $(person).imagesLoaded(function () {}).done(function () {
                 var imageHeight = $(person).find(".premium-person-image-container")
                     .outerHeight();
                 heights.push(imageHeight);
             });
         });
 
-        $persons.imagesLoaded(function () { }).done(function () {
+        $persons.imagesLoaded(function () {}).done(function () {
             var maxHeight = Math.max.apply(null, heights);
             $persons.find(".premium-person-image-wrap").css("height", maxHeight + "px");
         });

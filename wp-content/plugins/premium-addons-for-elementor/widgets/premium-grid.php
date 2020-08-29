@@ -334,7 +334,7 @@ class Premium_Grid extends Widget_Base {
                        'premium_gallery_img_cat'   => 'Category 2',
                    ],
                ],
-               'fields'             => array_values( $repeater->get_controls() ) ,
+               'fields'             => $repeater->get_controls(),
                'title_field'        => '{{{ premium_gallery_img_cat }}}',
                'condition'          => $condition
            ]
@@ -659,7 +659,7 @@ class Premium_Grid extends Widget_Base {
                        'premium_gallery_img_category' => 'Category 2'
                    ],
                ],
-               'fields' => array_values( $img_repeater->get_controls() ),
+               'fields' => $img_repeater->get_controls(),
                'title_field'   => '{{{ "" !== premium_gallery_img_name ? premium_gallery_img_name : "Image" }}}' . ' - {{{ "" !== premium_gallery_img_category ? premium_gallery_img_category : "No Categories" }}}',
            ]
        );
