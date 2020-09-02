@@ -179,26 +179,8 @@ if ( ! function_exists( 'hello_elementor_body_open' ) ) {
 	}
 	 }
 
-	 function product_post_types(){
-	   register_post_type('product', array(
-	     'public' => true,
-	     'labels' => array(
-	       'name' => 'Products'
-	     ),
-	     'menu_icon' => 'dashicons-calendar'
-	   ));
-	 }
-
-	 add_action('init','product_post_types');
-
-	 function services_post_types(){
-		register_post_type('service', array(
-		  'public' => true,
-		  'labels' => array(
-			'name' => 'Services'
-		  ),
-		  'menu_icon' => 'dashicons-calendar'
-		));
-	  }
- 
-	  add_action('init','services_post_types');
+function placemarkMapKey($api){
+	$api['key'] = 'AIzaSyDRdy6ldQOGH49IdoigD9yfl-VfuNCdEDw';
+	return $api;
+}
+add_filter('acf/fields/google_map/api','placemarkMapKey');
